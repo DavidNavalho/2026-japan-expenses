@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-19T19:59:23.961Z",
+  "generatedAt": "2026-04-19T20:03:36.973Z",
   "currency": "JPY",
   "fx": {
     "baseCurrency": "JPY",
@@ -24,15 +24,15 @@
     "days": 18
   },
   "summary": {
-    "totalSpendJPY": 1857390,
+    "totalSpendJPY": 1937390,
     "purchaseSpendJPY": 1827170,
-    "trackedTransactionCount": 107,
-    "physicalCashJPY": 30220,
-    "physicalCashCount": 1,
+    "trackedTransactionCount": 108,
+    "physicalCashJPY": 110220,
+    "physicalCashCount": 2,
     "excludedOutflowJPY": 334377,
     "reviewCount": 0,
-    "averagePerDayJPY": 103188,
-    "manualExpenseCount": 9
+    "averagePerDayJPY": 107633,
+    "manualExpenseCount": 10
   },
   "categoryTotals": [
     {
@@ -41,7 +41,7 @@
       "group": "Transport",
       "totalJPY": 957881,
       "count": 2,
-      "percentOfTotalSpend": 0.5157134473643122
+      "percentOfTotalSpend": 0.49441826374658693
     },
     {
       "category": "lodging",
@@ -49,7 +49,7 @@
       "group": "Lodging",
       "totalJPY": 456375,
       "count": 9,
-      "percentOfTotalSpend": 0.24570768659247655
+      "percentOfTotalSpend": 0.2355617609257816
     },
     {
       "category": "local-transit",
@@ -57,7 +57,15 @@
       "group": "Transport",
       "totalJPY": 140855,
       "count": 6,
-      "percentOfTotalSpend": 0.07583490812376507
+      "percentOfTotalSpend": 0.07270348252029793
+    },
+    {
+      "category": "physical-cash",
+      "label": "Physical Cash",
+      "group": "Physical Cash",
+      "totalJPY": 110220,
+      "count": 2,
+      "percentOfTotalSpend": 0.05689097187453223
     },
     {
       "category": "general-shopping",
@@ -65,7 +73,7 @@
       "group": "Shopping",
       "totalJPY": 97289,
       "count": 18,
-      "percentOfTotalSpend": 0.05237941412412041
+      "percentOfTotalSpend": 0.050216528422258815
     },
     {
       "category": "attractions",
@@ -73,7 +81,7 @@
       "group": "Activities",
       "totalJPY": 37383,
       "count": 3,
-      "percentOfTotalSpend": 0.020126629302408217
+      "percentOfTotalSpend": 0.019295547102029017
     },
     {
       "category": "clothing",
@@ -81,15 +89,7 @@
       "group": "Shopping",
       "totalJPY": 36034,
       "count": 4,
-      "percentOfTotalSpend": 0.019400341339191017
-    },
-    {
-      "category": "physical-cash",
-      "label": "Physical Cash",
-      "group": "Physical Cash",
-      "totalJPY": 30220,
-      "count": 1,
-      "percentOfTotalSpend": 0.016270142511804198
+      "percentOfTotalSpend": 0.018599249505778393
     },
     {
       "category": "convenience-store",
@@ -97,7 +97,7 @@
       "group": "Food & Drink",
       "totalJPY": 28960,
       "count": 33,
-      "percentOfTotalSpend": 0.015591771248903031
+      "percentOfTotalSpend": 0.01494794543174064
     },
     {
       "category": "souvenirs",
@@ -105,7 +105,7 @@
       "group": "Shopping",
       "totalJPY": 18535,
       "count": 11,
-      "percentOfTotalSpend": 0.009979056633232654
+      "percentOfTotalSpend": 0.00956699477131605
     },
     {
       "category": "anime-hobby",
@@ -113,7 +113,7 @@
       "group": "Shopping",
       "totalJPY": 18080,
       "count": 5,
-      "percentOfTotalSpend": 0.009734089232740566
+      "percentOfTotalSpend": 0.009332142728103274
     },
     {
       "category": "pharmacy-beauty",
@@ -121,7 +121,7 @@
       "group": "Health & Beauty",
       "totalJPY": 16169,
       "count": 5,
-      "percentOfTotalSpend": 0.008705226150673795
+      "percentOfTotalSpend": 0.008345764146609614
     },
     {
       "category": "food-drink",
@@ -129,7 +129,7 @@
       "group": "Food & Drink",
       "totalJPY": 9479,
       "count": 7,
-      "percentOfTotalSpend": 0.0051033977786033085
+      "percentOfTotalSpend": 0.00489266487387671
     },
     {
       "category": "connectivity",
@@ -137,7 +137,7 @@
       "group": "Trip Setup",
       "totalJPY": 5400,
       "count": 1,
-      "percentOfTotalSpend": 0.0029073054124335762
+      "percentOfTotalSpend": 0.002787255018349429
     },
     {
       "category": "toys",
@@ -145,7 +145,7 @@
       "group": "Shopping",
       "totalJPY": 4730,
       "count": 2,
-      "percentOfTotalSpend": 0.0025465841853353362
+      "percentOfTotalSpend": 0.0024414289327394072
     }
   ],
   "groupTotals": [
@@ -165,6 +165,11 @@
       "count": 40
     },
     {
+      "group": "Physical Cash",
+      "totalJPY": 110220,
+      "count": 2
+    },
+    {
       "group": "Food & Drink",
       "totalJPY": 38439,
       "count": 40
@@ -173,11 +178,6 @@
       "group": "Activities",
       "totalJPY": 37383,
       "count": 3
-    },
-    {
-      "group": "Physical Cash",
-      "totalJPY": 30220,
-      "count": 1
     },
     {
       "group": "Health & Beauty",
@@ -208,6 +208,12 @@
       "totalJPY": 96520,
       "count": 2,
       "category": "local-transit"
+    },
+    {
+      "merchant": "Seven Bank ATM",
+      "totalJPY": 80000,
+      "count": 1,
+      "category": "physical-cash"
     },
     {
       "merchant": "Domestic flight",
@@ -304,12 +310,6 @@
       "totalJPY": 7710,
       "count": 1,
       "category": "general-shopping"
-    },
-    {
-      "merchant": "Sugi Pharmacy",
-      "totalJPY": 7259,
-      "count": 4,
-      "category": "pharmacy-beauty"
     }
   ],
   "dailyTotals": [
@@ -325,8 +325,8 @@
     },
     {
       "date": "2026-03-27",
-      "totalJPY": 103232,
-      "count": 7
+      "totalJPY": 183232,
+      "count": 8
     },
     {
       "date": "2026-03-28",
@@ -440,6 +440,12 @@
       "category": "lodging",
       "totalJPY": 95484,
       "count": 2
+    },
+    {
+      "date": "2026-03-27",
+      "category": "physical-cash",
+      "totalJPY": 80000,
+      "count": 1
     },
     {
       "date": "2026-03-28",
@@ -799,6 +805,20 @@
     }
   ],
   "manualExpenses": [
+    {
+      "date": "2026-03-27",
+      "startDate": "2026-03-27",
+      "endDate": "2026-03-27",
+      "description": "Cash withdrawal at 7-Eleven / Seven Bank",
+      "normalizedMerchant": "Seven Bank ATM",
+      "amountJPY": 80000,
+      "category": "physical-cash",
+      "classification": "manual-expense",
+      "notes": "Manual cash withdrawal missing from the current bank exports.",
+      "sourceAmount": 80000,
+      "sourceCurrency": "JPY",
+      "sourceAmountJPY": 80000
+    },
     {
       "date": "2026-03-27",
       "startDate": "2026-03-27",

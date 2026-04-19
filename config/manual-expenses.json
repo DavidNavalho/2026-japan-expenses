@@ -2,6 +2,16 @@
   "expenses": [
     {
       "date": "2026-03-27",
+      "description": "Cash withdrawal at 7-Eleven / Seven Bank",
+      "normalizedMerchant": "Seven Bank ATM",
+      "sourceAmount": 80000,
+      "sourceCurrency": "JPY",
+      "category": "physical-cash",
+      "group": "Physical Cash",
+      "notes": "Manual cash withdrawal missing from the current bank exports."
+    },
+    {
+      "date": "2026-03-27",
       "startDate": "2026-03-27",
       "endDate": "2026-03-31",
       "description": "Hotel stay 27-31 Mar",

@@ -27,6 +27,12 @@ const transactions = merchantConfig.accounts.flatMap((account) =>
 const manualExpenses = (manualExpensesConfig.expenses ?? []).map((expense, index) =>
   normalizeManualExpense(expense, index),
 );
+const manualPhysicalCashExpenses = manualExpenses.filter(
+  (expense) => expense.category === "physical-cash",
+);
+const manualNonCashExpenses = manualExpenses.filter(
+  (expense) => expense.category !== "physical-cash",
+);
 
 const physicalCashTransactions = transactions.filter(
   (transaction) => transaction.classification === "cash-withdrawal",
@@ -45,12 +51,13 @@ const reviewTransactions = [
   ...manualExpenses.filter((expense) => expense.review),
 ];
 
-const trackedItems = [...purchaseTransactions, ...manualExpenses];
-const totalSpendItems = [...trackedItems, ...physicalCashTransactions];
+const trackedItems = [...purchaseTransactions, ...manualNonCashExpenses];
+const physicalCashItems = [...physicalCashTransactions, ...manualPhysicalCashExpenses];
+const totalSpendItems = [...trackedItems, ...physicalCashItems];
 const tripStart = minimumDate(totalSpendItems.map((item) => item.date));
 const tripEnd = maximumDate(totalSpendItems.map((item) => item.date));
 const purchaseSpendTotal = sumAbs(trackedItems);
-const physicalCashTotal = sumAbs(physicalCashTransactions);
+const physicalCashTotal = sumAbs(physicalCashItems);
 const totalSpendJPY = purchaseSpendTotal + physicalCashTotal;
 const tripDays = tripStart && tripEnd ? inclusiveDays(tripStart, tripEnd) : 0;
 const averagePerDay = tripDays ? totalSpendJPY / tripDays : 0;
@@ -172,7 +179,7 @@ const output = {
     purchaseSpendJPY: purchaseSpendTotal,
     trackedTransactionCount: totalSpendItems.length,
     physicalCashJPY: physicalCashTotal,
-    physicalCashCount: physicalCashTransactions.length,
+    physicalCashCount: physicalCashItems.length,
     excludedOutflowJPY: excludedSummary.reduce((sum, entry) => sum + entry.totalJPY, 0),
     reviewCount: ambiguousTransactions.length,
     averagePerDayJPY: Math.round(averagePerDay),
