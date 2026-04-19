@@ -1,6 +1,7 @@
 const state = {
   currency: "JPY",
   timelineFilter: "all",
+  explorerCategory: null,
 };
 
 (function renderDashboard() {
@@ -16,12 +17,20 @@ const state = {
 })();
 
 function renderAll(data) {
+  if (!state.explorerCategory) {
+    state.explorerCategory = data.categoryTotals[0]?.category ?? null;
+  }
+
+  const availableCategories = new Set(data.categoryTotals.map((entry) => entry.category));
+  if (state.explorerCategory && !availableCategories.has(state.explorerCategory)) {
+    state.explorerCategory = data.categoryTotals[0]?.category ?? null;
+  }
+
   renderSnapshot(data);
   renderCategories(data);
   renderTimeline(data);
-  renderLodgingTrack(data);
   renderManualExpenses(data);
-  renderMerchants(data);
+  renderSpendExplorer(data);
   renderReview(data);
   renderExcluded(data);
   renderNextSteps(data);
@@ -145,37 +154,6 @@ function renderTimeline(data) {
   `;
 }
 
-function renderMerchants(data) {
-  const merchants = document.getElementById("merchants");
-
-  merchants.innerHTML = `
-    <h2>Top merchants</h2>
-    <p class="panel-intro">
-      Useful for spotting large one-off spends, repeat stores, and anything worth splitting into a more precise category.
-    </p>
-    <div class="list">
-      <div class="list-header">
-        <span>Merchant</span>
-        <span>Category</span>
-        <span>Count</span>
-        <span>Total</span>
-      </div>
-      ${data.merchantTotals
-        .map(
-          (entry) => `
-            <div class="table-row">
-              <div><strong>${escapeHtml(entry.merchant)}</strong></div>
-              <span>${escapeHtml(labelize(entry.category))}</span>
-              <span>${entry.count}</span>
-              <strong>${formatMoney(entry.totalJPY, data)}</strong>
-            </div>
-          `,
-        )
-        .join("")}
-    </div>
-  `;
-}
-
 function renderManualExpenses(data) {
   const manualExpenses = document.getElementById("manual-expenses");
   const nonLodgingManualExpenses =
@@ -216,42 +194,85 @@ function renderManualExpenses(data) {
   `;
 }
 
-function renderLodgingTrack(data) {
-  const lodgingTrack = document.getElementById("lodging-track");
-  const lodgingEntries =
-    data.manualExpenses?.filter((entry) => entry.category === "lodging") ?? [];
+function renderSpendExplorer(data) {
+  const spendExplorer = document.getElementById("spend-explorer");
+  const activeCategory = state.explorerCategory ?? data.categoryTotals[0]?.category ?? null;
+  const activeCategoryMeta = data.categoryTotals.find((entry) => entry.category === activeCategory);
+  const activeEntries = (data.spendEntries ?? []).filter((entry) => entry.category === activeCategory);
 
-  lodgingTrack.innerHTML = `
-    <h2>Lodging Track</h2>
-    <p class="panel-intro">
-      Stay segments across the trip, showing the booked date range, original source amount, and converted dashboard total.
-    </p>
-    <div class="list">
-      <div class="list-header lodging-list">
-        <span>Stay</span>
-        <span>Segment</span>
-        <span>Source amount</span>
-        <span>Converted total</span>
+  spendExplorer.innerHTML = `
+    <div class="panel-header">
+      <div>
+        <h2>Spend Explorer</h2>
+        <p class="panel-intro">
+          Category totals with click-through detail. Select a category to inspect every public-safe entry in date order.
+        </p>
       </div>
-      ${
-        lodgingEntries.length
-          ? lodgingEntries
-              .map(
-                (entry) => `
-                  <div class="table-row lodging-list">
-                    <div>
-                      <strong>${escapeHtml(entry.normalizedMerchant)}</strong>
-                      <div class="merchant-breakdown">${escapeHtml(entry.description)}</div>
-                    </div>
-                    <span>${escapeHtml(formatStayRange(entry))}</span>
-                    <span>${formatSourceAmount(entry)}</span>
-                    <strong>${formatMoney(entry.amountJPY, data)}</strong>
-                  </div>
-                `,
-              )
-              .join("")
-          : '<div class="table-row lodging-list"><strong>No lodging stays added.</strong><span></span><span></span><span></span></div>'
-      }
+    </div>
+    <div class="explorer-layout">
+      <div class="explorer-categories">
+        ${data.categoryTotals
+          .map(
+            (entry) => `
+              <button
+                type="button"
+                class="explorer-category-button ${activeCategory === entry.category ? "is-active" : ""}"
+                data-explorer-category="${entry.category}"
+              >
+                <span class="explorer-category-label">${escapeHtml(entry.label)}</span>
+                <span class="explorer-category-meta">${entry.count} entries</span>
+                <strong class="explorer-category-total">${formatMoney(entry.totalJPY, data)}</strong>
+              </button>
+            `,
+          )
+          .join("")}
+      </div>
+      <div class="explorer-detail">
+        ${
+          activeCategoryMeta
+            ? `
+              <div class="explorer-detail-header">
+                <div>
+                  <h3>${escapeHtml(activeCategoryMeta.label)}</h3>
+                  <p class="panel-intro">
+                    ${activeCategoryMeta.count} entries · ${Math.round(activeCategoryMeta.percentOfTotalSpend * 100)}% of total spend
+                  </p>
+                </div>
+                <strong class="explorer-detail-total">${formatMoney(activeCategoryMeta.totalJPY, data)}</strong>
+              </div>
+              <div class="list">
+                <div class="list-header explorer-entry-list">
+                  <span>Date</span>
+                  <span>Entry</span>
+                  <span>Source</span>
+                  <span>Total</span>
+                </div>
+                ${
+                  activeEntries.length
+                    ? activeEntries
+                        .map(
+                          (entry) => `
+                            <div class="table-row explorer-entry-list">
+                              <div>
+                                <strong>${escapeHtml(formatExplorerDate(entry))}</strong>
+                              </div>
+                              <div>
+                                <strong>${escapeHtml(entry.normalizedMerchant)}</strong>
+                                <div class="merchant-breakdown">${escapeHtml(entry.description)}</div>
+                              </div>
+                              <div>${formatExplorerSource(entry)}</div>
+                              <strong>${formatMoney(entry.amountJPY, data)}</strong>
+                            </div>
+                          `,
+                        )
+                        .join("")
+                    : '<div class="table-row explorer-entry-list"><strong>No entries for this category.</strong><span></span><span></span><span></span></div>'
+                }
+              </div>
+            `
+            : '<p class="panel-intro">No category selected.</p>'
+        }
+      </div>
     </div>
   `;
 }
@@ -408,6 +429,22 @@ function attachCurrencyToggle() {
 
     state.timelineFilter = nextFilter;
     renderAll(window.TRIP_DATA);
+    return;
+  });
+
+  document.addEventListener("click", (event) => {
+    const explorerCategory = event.target.closest("[data-explorer-category]");
+    if (!explorerCategory) {
+      return;
+    }
+
+    const nextCategory = explorerCategory.getAttribute("data-explorer-category");
+    if (!nextCategory || nextCategory === state.explorerCategory) {
+      return;
+    }
+
+    state.explorerCategory = nextCategory;
+    renderAll(window.TRIP_DATA);
   });
 }
 
@@ -517,6 +554,37 @@ function formatStayRange(entry) {
   }
 
   return `${entry.startDate} to ${entry.endDate}`;
+}
+
+function formatExplorerDate(entry) {
+  if (entry.startDate && entry.endDate && entry.startDate !== entry.endDate) {
+    return `${entry.startDate} to ${entry.endDate}`;
+  }
+
+  return entry.date;
+}
+
+function formatExplorerSource(entry) {
+  if (entry.sourceAmount != null && entry.sourceCurrency) {
+    return `
+      <strong>${formatSourceAmount(entry)}</strong>
+      <div class="merchant-breakdown">${escapeHtml(sourceLabel(entry))}</div>
+    `;
+  }
+
+  return `<span class="merchant-breakdown">${escapeHtml(sourceLabel(entry))}</span>`;
+}
+
+function sourceLabel(entry) {
+  if (entry.source === "manual-entry") {
+    return "Manual entry";
+  }
+
+  if (entry.classification === "cash-withdrawal") {
+    return "Bank export";
+  }
+
+  return "Bank export";
 }
 
 function escapeHtml(value) {

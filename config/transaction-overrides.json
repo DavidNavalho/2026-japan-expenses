@@ -71,8 +71,8 @@
         "amount": -122570
       },
       "set": {
-        "amountJPY": -69880,
-        "notes": "Adjusted down by 52,690 JPY because part of this multi-person JR purchase did not belong to this trip.",
+        "amountJPY": -55460,
+        "notes": "Adjusted down by 67,110 JPY because part of this multi-person JR purchase did not belong to this trip.",
         "normalizedMerchant": "JR Central"
       }
     }

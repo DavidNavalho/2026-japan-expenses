@@ -103,6 +103,32 @@ const merchantTotals = summarizeBy(
   .sort((left, right) => right.totalJPY - left.totalJPY)
   .slice(0, 20);
 
+const publicSpendEntries = totalSpendItems
+  .map((item) => ({
+    id: item.id,
+    date: item.date,
+    startDate: item.startDate ?? item.date,
+    endDate: item.endDate ?? item.date,
+    description: item.description,
+    normalizedMerchant: item.normalizedMerchant || item.description,
+    amountJPY: Math.abs(item.amountJPY),
+    category: item.category,
+    group: item.group,
+    classification: item.classification,
+    notes: item.notes,
+    source: item.source,
+    sourceAmount: item.sourceAmount ?? null,
+    sourceCurrency: item.sourceCurrency ?? "JPY",
+    sourceAmountJPY: item.sourceAmountJPY ?? Math.abs(item.amountJPY),
+  }))
+  .sort((left, right) => {
+    if (left.date === right.date) {
+      return left.normalizedMerchant.localeCompare(right.normalizedMerchant);
+    }
+
+    return left.date.localeCompare(right.date);
+  });
+
 const dailyTotals = summarizeBy(
   totalSpendItems,
   (item) => item.date,
@@ -208,6 +234,7 @@ const publicOutput = {
   dailyTotals: output.dailyTotals,
   dailyCategoryTotals: output.dailyCategoryTotals,
   excludedSummary: output.excludedSummary,
+  spendEntries: publicSpendEntries,
   manualExpenses: output.manualExpenses.map((expense) => ({
     date: expense.date,
     startDate: expense.startDate ?? expense.date,
