@@ -177,6 +177,20 @@ const publicOutput = {
   merchantTotals: output.merchantTotals,
   dailyTotals: output.dailyTotals,
   excludedSummary: output.excludedSummary,
+  manualExpenses: output.manualExpenses.map((expense) => ({
+    date: expense.date,
+    startDate: expense.startDate ?? expense.date,
+    endDate: expense.endDate ?? expense.date,
+    description: expense.description,
+    normalizedMerchant: expense.normalizedMerchant,
+    amountJPY: Math.abs(expense.amountJPY),
+    category: expense.category,
+    classification: expense.classification,
+    notes: expense.notes,
+    sourceAmount: expense.sourceAmount ?? null,
+    sourceCurrency: expense.sourceCurrency ?? "JPY",
+    sourceAmountJPY: expense.sourceAmountJPY ?? Math.abs(expense.amountJPY),
+  })),
   reviewTransactions: output.reviewTransactions.map((transaction) => ({
     date: transaction.date,
     description: transaction.description,
@@ -291,6 +305,10 @@ function normalizeTransaction({ row, index, file, rules, overrides }) {
   const overrideMatched = applyRuleSet(ruleMatched, overrides);
   return {
     ...overrideMatched,
+    amountJPY: Number(overrideMatched.amountJPY),
+    absoluteAmountJPY: Math.abs(Number(overrideMatched.amountJPY)),
+    includeInTrackedSpend:
+      Boolean(overrideMatched.includeInTrackedSpend) && Number(overrideMatched.amountJPY) < 0,
     review:
       overrideMatched.review ||
       (overrideMatched.includeInTrackedSpend && overrideMatched.category === "uncategorized"),
@@ -298,8 +316,19 @@ function normalizeTransaction({ row, index, file, rules, overrides }) {
 }
 
 function normalizeManualExpense(expense, index) {
-  const amountJPY = Number(expense.amountJPY ?? expense.amount ?? 0);
+  const sourceCurrency = expense.sourceCurrency || "JPY";
+  const sourceAmount = Number(
+    expense.sourceAmount ?? expense.originalAmount ?? expense.amountJPY ?? expense.amount ?? 0,
+  );
+  const amountJPY =
+    expense.amountJPY != null
+      ? Number(expense.amountJPY)
+      : convertToJPY({
+          amount: sourceAmount,
+          currency: sourceCurrency,
+        });
   const date = expense.date;
+  const signedAmountJPY = amountJPY <= 0 ? amountJPY : -amountJPY;
 
   return {
     id: expense.id || `manual-${index + 1}`,
@@ -308,15 +337,22 @@ function normalizeManualExpense(expense, index) {
     sourceRow: index + 1,
     dateTime: `${date} 00:00:00`,
     date,
+    startDate: expense.startDate || date,
+    endDate: expense.endDate || date,
     startedAt: `${date} 00:00:00`,
     completedAt: `${date} 00:00:00`,
     description: expense.description || "Manual expense",
     normalizedMerchant: expense.normalizedMerchant || expense.description || "Manual expense",
     type: "Manual Expense",
     product: "Manual",
-    amountJPY: amountJPY <= 0 ? amountJPY : -amountJPY,
-    absoluteAmountJPY: Math.abs(amountJPY),
+    amountJPY: signedAmountJPY,
+    absoluteAmountJPY: Math.abs(signedAmountJPY),
     currency: "JPY",
+    sourceCurrency,
+    sourceAmount,
+    sourceAmountJPY:
+      sourceCurrency === "JPY" ? Math.abs(sourceAmount) : Math.abs(convertToJPY({ amount: sourceAmount, currency: sourceCurrency })),
+    conversionRate: sourceCurrency === "EUR" ? exchangeRateConfig.rates.JPY_PER_EUR : 1,
     state: "MANUAL",
     includeInTrackedSpend: true,
     classification: expense.classification || "manual-expense",
@@ -421,6 +457,18 @@ function slugify(value) {
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+function convertToJPY({ amount, currency }) {
+  if (currency === "JPY") {
+    return Math.round(amount);
+  }
+
+  if (currency === "EUR") {
+    return Math.round(amount * exchangeRateConfig.rates.JPY_PER_EUR);
+  }
+
+  throw new Error(`Unsupported source currency: ${currency}`);
 }
 
 function prepareDist(publicOutput) {

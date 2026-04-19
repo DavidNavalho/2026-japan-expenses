@@ -34,7 +34,8 @@ Add missing costs to `config/manual-expenses.json` like this:
       "date": "2026-03-20",
       "description": "Flights to Tokyo",
       "normalizedMerchant": "TAP Air Portugal",
-      "amountJPY": 185000,
+      "sourceAmount": 1850.0,
+      "sourceCurrency": "EUR",
       "category": "transport",
       "group": "Transport",
       "notes": "Round-trip flights booked before departure."
@@ -47,6 +48,7 @@ Add missing costs to `config/manual-expenses.json` like this:
 
 - Cash withdrawals are counted as `physical cash` in trip totals, but they are not broken down into finer categories.
 - The currency toggle defaults to JPY and can switch to EUR using the ECB reference rate stored in `config/exchange-rate.json`.
+- Manual expenses can be entered directly in JPY or as `sourceAmount` plus `sourceCurrency` such as EUR; those are converted into JPY for totals while preserving the original source amount for display.
 - The public site uses a sanitized dataset. Private source exports and the full processed dataset should stay local.
 - The build expects local source files at `private/account-a.csv` and `private/account-b.csv`.
 - The current rules already map the known Apple Pay Suica top-up to transport.

@@ -6,7 +6,7 @@
         "amount": -20000
       },
       "set": {
-        "category": "transport",
+        "category": "local-transit",
         "group": "Transport",
         "normalizedMerchant": "Suica via Apple Pay",
         "review": false,
@@ -35,6 +35,17 @@
         "normalizedMerchant": "Kawaharae",
         "review": false,
         "notes": "Assumed shop or souvenir purchase."
+      }
+    },
+    {
+      "match": {
+        "description": "JR Central Tokyo Head Office",
+        "amount": -122570
+      },
+      "set": {
+        "amountJPY": -69880,
+        "notes": "Adjusted down by 52,690 JPY because part of this multi-person JR purchase did not belong to this trip.",
+        "normalizedMerchant": "JR Central"
       }
     }
   ]

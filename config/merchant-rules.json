@@ -53,7 +53,7 @@
         "descriptionContains": "Suica Mobile Payment"
       },
       "set": {
-        "category": "transport",
+        "category": "local-transit",
         "group": "Transport",
         "normalizedMerchant": "Suica",
         "notes": "Transit card top-up."
@@ -64,10 +64,10 @@
         "descriptionContains": "JR Central Tokyo Head Office"
       },
       "set": {
-        "category": "transport",
+        "category": "local-transit",
         "group": "Transport",
         "normalizedMerchant": "JR Central",
-        "notes": "Likely Shinkansen or long-distance rail tickets."
+        "notes": "Rail ticket or transit purchase."
       }
     },
     {
@@ -75,7 +75,7 @@
         "descriptionContains": "JR-EAST"
       },
       "set": {
-        "category": "transport",
+        "category": "local-transit",
         "group": "Transport",
         "normalizedMerchant": "JR East",
         "notes": "Rail fare or ticket purchase."

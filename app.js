@@ -18,6 +18,8 @@ function renderAll(data) {
   renderSnapshot(data);
   renderCategories(data);
   renderTimeline(data);
+  renderLodgingTrack(data);
+  renderManualExpenses(data);
   renderMerchants(data);
   renderReview(data);
   renderExcluded(data);
@@ -50,7 +52,7 @@ function renderSnapshot(data) {
     </p>
     <div class="kpi-grid">
       ${kpiCard("Total spend", formatMoney(data.summary.totalSpendJPY, data))}
-      ${kpiCard("Recorded purchases", formatMoney(data.summary.purchaseSpendJPY, data))}
+      ${kpiCard("Non-cash spend", formatMoney(data.summary.purchaseSpendJPY, data))}
       ${kpiCard("Physical cash", formatMoney(data.summary.physicalCashJPY, data))}
       ${kpiCard("Trip window", `${data.tripWindow.start} to ${data.tripWindow.end}`)}
       ${kpiCard("Average per day", formatMoney(data.summary.averagePerDayJPY, data))}
@@ -147,6 +149,86 @@ function renderMerchants(data) {
           `,
         )
         .join("")}
+    </div>
+  `;
+}
+
+function renderManualExpenses(data) {
+  const manualExpenses = document.getElementById("manual-expenses");
+  const nonLodgingManualExpenses =
+    data.manualExpenses?.filter((entry) => entry.category !== "lodging") ?? [];
+
+  manualExpenses.innerHTML = `
+    <h2>Prebooked Costs</h2>
+    <p class="panel-intro">
+      Flights, tours, and other prebooked items keep their original source amount when that amount was recorded in EUR, while totals are still rolled up in JPY behind the scenes.
+    </p>
+    <div class="list">
+      <div class="list-header manual-list">
+        <span>Item</span>
+        <span>Source amount</span>
+        <span>Converted total</span>
+        <span>Category</span>
+      </div>
+      ${
+        nonLodgingManualExpenses.length
+          ? nonLodgingManualExpenses
+              .map(
+                (entry) => `
+                  <div class="table-row manual-list">
+                    <div>
+                      <strong>${escapeHtml(entry.normalizedMerchant)}</strong>
+                      <div class="merchant-breakdown">${escapeHtml(entry.date)} · ${escapeHtml(entry.description)}</div>
+                    </div>
+                    <span>${formatSourceAmount(entry)}</span>
+                    <strong>${formatMoney(entry.amountJPY, data)}</strong>
+                    <span>${escapeHtml(labelize(entry.category))}</span>
+                  </div>
+                `,
+              )
+              .join("")
+          : '<div class="table-row manual-list"><strong>No manual expenses yet.</strong><span></span><span></span><span></span></div>'
+      }
+    </div>
+  `;
+}
+
+function renderLodgingTrack(data) {
+  const lodgingTrack = document.getElementById("lodging-track");
+  const lodgingEntries =
+    data.manualExpenses?.filter((entry) => entry.category === "lodging") ?? [];
+
+  lodgingTrack.innerHTML = `
+    <h2>Lodging Track</h2>
+    <p class="panel-intro">
+      Stay segments across the trip, showing the booked date range, original source amount, and converted dashboard total.
+    </p>
+    <div class="list">
+      <div class="list-header lodging-list">
+        <span>Stay</span>
+        <span>Segment</span>
+        <span>Source amount</span>
+        <span>Converted total</span>
+      </div>
+      ${
+        lodgingEntries.length
+          ? lodgingEntries
+              .map(
+                (entry) => `
+                  <div class="table-row lodging-list">
+                    <div>
+                      <strong>${escapeHtml(entry.normalizedMerchant)}</strong>
+                      <div class="merchant-breakdown">${escapeHtml(entry.description)}</div>
+                    </div>
+                    <span>${escapeHtml(formatStayRange(entry))}</span>
+                    <span>${formatSourceAmount(entry)}</span>
+                    <strong>${formatMoney(entry.amountJPY, data)}</strong>
+                  </div>
+                `,
+              )
+              .join("")
+          : '<div class="table-row lodging-list"><strong>No lodging stays added.</strong><span></span><span></span><span></span></div>'
+      }
     </div>
   `;
 }
@@ -327,6 +409,35 @@ function shortMoney(valueJPY, data) {
 
 function convertJPYToEUR(valueJPY, data) {
   return valueJPY * (data.fx?.rates?.EUR_PER_JPY ?? 0);
+}
+
+function formatSourceAmount(entry) {
+  if (entry.sourceCurrency === "EUR") {
+    return new Intl.NumberFormat("pt-PT", {
+      style: "currency",
+      currency: "EUR",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(entry.sourceAmount);
+  }
+
+  if (entry.sourceCurrency === "JPY") {
+    return new Intl.NumberFormat("ja-JP", {
+      style: "currency",
+      currency: "JPY",
+      maximumFractionDigits: 0,
+    }).format(entry.sourceAmount);
+  }
+
+  return escapeHtml(String(entry.sourceAmount ?? ""));
+}
+
+function formatStayRange(entry) {
+  if (!entry.startDate || !entry.endDate) {
+    return entry.date;
+  }
+
+  return `${entry.startDate} to ${entry.endDate}`;
 }
 
 function escapeHtml(value) {

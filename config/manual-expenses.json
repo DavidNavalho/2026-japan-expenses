@@ -1,3 +1,106 @@
 {
-  "expenses": []
+  "expenses": [
+    {
+      "date": "2026-03-27",
+      "startDate": "2026-03-27",
+      "endDate": "2026-03-31",
+      "description": "Hotel stay 27-31 Mar",
+      "normalizedMerchant": "Hotel booking",
+      "sourceAmount": 506.52,
+      "sourceCurrency": "EUR",
+      "category": "lodging",
+      "group": "Lodging",
+      "notes": "Accommodation booked outside the bank export."
+    },
+    {
+      "date": "2026-03-31",
+      "startDate": "2026-03-31",
+      "endDate": "2026-04-03",
+      "description": "Hotel stay 31 Mar-3 Apr",
+      "normalizedMerchant": "Hotel booking",
+      "sourceAmount": 529.25,
+      "sourceCurrency": "EUR",
+      "category": "lodging",
+      "group": "Lodging",
+      "notes": "Accommodation booked outside the bank export."
+    },
+    {
+      "date": "2026-04-03",
+      "startDate": "2026-04-03",
+      "endDate": "2026-04-05",
+      "description": "Hotel stay 3-5 Apr",
+      "normalizedMerchant": "Hotel booking",
+      "sourceAmount": 543.43,
+      "sourceCurrency": "EUR",
+      "category": "lodging",
+      "group": "Lodging",
+      "notes": "Accommodation booked outside the bank export."
+    },
+    {
+      "date": "2026-04-05",
+      "startDate": "2026-04-05",
+      "endDate": "2026-04-07",
+      "description": "Hotel stay 5-7 Apr",
+      "normalizedMerchant": "Hotel booking",
+      "sourceAmount": 223.0,
+      "sourceCurrency": "EUR",
+      "category": "lodging",
+      "group": "Lodging",
+      "notes": "Accommodation booked outside the bank export."
+    },
+    {
+      "date": "2026-04-07",
+      "startDate": "2026-04-07",
+      "endDate": "2026-04-10",
+      "description": "Hotel stay 7-10 Apr",
+      "normalizedMerchant": "Hotel booking",
+      "sourceAmount": 285.53,
+      "sourceCurrency": "EUR",
+      "category": "lodging",
+      "group": "Lodging",
+      "notes": "Accommodation booked outside the bank export."
+    },
+    {
+      "date": "2026-04-10",
+      "startDate": "2026-04-10",
+      "endDate": "2026-04-12",
+      "description": "Hotel stay 10-12 Apr",
+      "normalizedMerchant": "Hotel booking",
+      "sourceAmount": 323.86,
+      "sourceCurrency": "EUR",
+      "category": "lodging",
+      "group": "Lodging",
+      "notes": "Accommodation booked outside the bank export."
+    },
+    {
+      "date": "2026-04-09",
+      "description": "Klook paid tour",
+      "normalizedMerchant": "Klook",
+      "sourceAmount": 150.0,
+      "sourceCurrency": "EUR",
+      "category": "attractions",
+      "group": "Activities",
+      "notes": "Paid tour booked via Klook."
+    },
+    {
+      "date": "2026-03-26",
+      "description": "Main round-trip flights Lisbon-Tokyo-Lisbon",
+      "normalizedMerchant": "International flights",
+      "sourceAmount": 4874.76,
+      "sourceCurrency": "EUR",
+      "category": "flights",
+      "group": "Transport",
+      "notes": "Main international flights: 26 Mar outbound, 12 Apr return."
+    },
+    {
+      "date": "2026-04-10",
+      "description": "Internal flight Fukuoka-Tokyo",
+      "normalizedMerchant": "Domestic flight",
+      "sourceAmount": 227.95,
+      "sourceCurrency": "EUR",
+      "category": "flights",
+      "group": "Transport",
+      "notes": "Internal flight from Fukuoka to Tokyo."
+    }
+  ]
 }

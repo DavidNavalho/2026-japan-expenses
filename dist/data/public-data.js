@@ -1,5 +1,5 @@
 window.TRIP_DATA = {
-  "generatedAt": "2026-04-19T14:43:04.832Z",
+  "generatedAt": "2026-04-19T16:11:02.868Z",
   "currency": "JPY",
   "fx": {
     "baseCurrency": "JPY",
@@ -24,24 +24,40 @@ window.TRIP_DATA = {
     "days": 18
   },
   "summary": {
-    "totalSpendJPY": 527296,
-    "purchaseSpendJPY": 497076,
-    "trackedTransactionCount": 100,
+    "totalSpendJPY": 1913350,
+    "purchaseSpendJPY": 1883130,
+    "trackedTransactionCount": 109,
     "physicalCashJPY": 30220,
     "physicalCashCount": 1,
     "excludedOutflowJPY": 278417,
     "reviewCount": 0,
-    "averagePerDayJPY": 29294,
-    "manualExpenseCount": 0
+    "averagePerDayJPY": 106297,
+    "manualExpenseCount": 9
   },
   "categoryTotals": [
     {
-      "category": "transport",
-      "label": "Transport",
+      "category": "flights",
+      "label": "Flights",
       "group": "Transport",
-      "totalJPY": 233505,
+      "totalJPY": 957881,
+      "count": 2,
+      "percentOfTotalSpend": 0.5006303080983615
+    },
+    {
+      "category": "lodging",
+      "label": "Lodging",
+      "group": "Lodging",
+      "totalJPY": 456375,
+      "count": 9,
+      "percentOfTotalSpend": 0.23852144145085843
+    },
+    {
+      "category": "local-transit",
+      "label": "Local Transit",
+      "group": "Transport",
+      "totalJPY": 180815,
       "count": 7,
-      "percentOfTotalSpend": 0.4428347645345309
+      "percentOfTotalSpend": 0.0945017900540936
     },
     {
       "category": "general-shopping",
@@ -49,7 +65,15 @@ window.TRIP_DATA = {
       "group": "Shopping",
       "totalJPY": 113289,
       "count": 19,
-      "percentOfTotalSpend": 0.2148489652870494
+      "percentOfTotalSpend": 0.0592097629811587
+    },
+    {
+      "category": "attractions",
+      "label": "Attractions",
+      "group": "Activities",
+      "totalJPY": 37383,
+      "count": 3,
+      "percentOfTotalSpend": 0.01953798311861395
     },
     {
       "category": "clothing",
@@ -57,7 +81,7 @@ window.TRIP_DATA = {
       "group": "Shopping",
       "totalJPY": 36034,
       "count": 4,
-      "percentOfTotalSpend": 0.06833732855929117
+      "percentOfTotalSpend": 0.01883293699532234
     },
     {
       "category": "physical-cash",
@@ -65,7 +89,7 @@ window.TRIP_DATA = {
       "group": "Physical Cash",
       "totalJPY": 30220,
       "count": 1,
-      "percentOfTotalSpend": 0.05731126350285229
+      "percentOfTotalSpend": 0.015794287506206393
     },
     {
       "category": "convenience-store",
@@ -73,7 +97,7 @@ window.TRIP_DATA = {
       "group": "Food & Drink",
       "totalJPY": 28960,
       "count": 33,
-      "percentOfTotalSpend": 0.05492171380021847
+      "percentOfTotalSpend": 0.015135756657171975
     },
     {
       "category": "souvenirs",
@@ -81,7 +105,7 @@ window.TRIP_DATA = {
       "group": "Shopping",
       "totalJPY": 18535,
       "count": 11,
-      "percentOfTotalSpend": 0.0351510347129506
+      "percentOfTotalSpend": 0.009687197846708653
     },
     {
       "category": "anime-hobby",
@@ -89,7 +113,7 @@ window.TRIP_DATA = {
       "group": "Shopping",
       "totalJPY": 18080,
       "count": 5,
-      "percentOfTotalSpend": 0.03428814176477728
+      "percentOfTotalSpend": 0.009449395040112891
     },
     {
       "category": "pharmacy-beauty",
@@ -97,7 +121,7 @@ window.TRIP_DATA = {
       "group": "Health & Beauty",
       "totalJPY": 16169,
       "count": 5,
-      "percentOfTotalSpend": 0.030663991382449327
+      "percentOfTotalSpend": 0.008450623252410694
     },
     {
       "category": "food-drink",
@@ -105,15 +129,7 @@ window.TRIP_DATA = {
       "group": "Food & Drink",
       "totalJPY": 9479,
       "count": 7,
-      "percentOfTotalSpend": 0.017976620342274548
-    },
-    {
-      "category": "attractions",
-      "label": "Attractions",
-      "group": "Activities",
-      "totalJPY": 9225,
-      "count": 2,
-      "percentOfTotalSpend": 0.017494917465711857
+      "percentOfTotalSpend": 0.004954138030156532
     },
     {
       "category": "connectivity",
@@ -121,7 +137,7 @@ window.TRIP_DATA = {
       "group": "Trip Setup",
       "totalJPY": 5400,
       "count": 1,
-      "percentOfTotalSpend": 0.010240927297002064
+      "percentOfTotalSpend": 0.0028222750672903547
     },
     {
       "category": "toys",
@@ -129,22 +145,19 @@ window.TRIP_DATA = {
       "group": "Shopping",
       "totalJPY": 4730,
       "count": 2,
-      "percentOfTotalSpend": 0.008970293724966622
-    },
-    {
-      "category": "lodging",
-      "label": "Lodging",
-      "group": "Lodging",
-      "totalJPY": 3670,
-      "count": 3,
-      "percentOfTotalSpend": 0.006960037625925476
+      "percentOfTotalSpend": 0.002472103901533959
     }
   ],
   "groupTotals": [
     {
       "group": "Transport",
-      "totalJPY": 233505,
-      "count": 7
+      "totalJPY": 1138696,
+      "count": 9
+    },
+    {
+      "group": "Lodging",
+      "totalJPY": 456375,
+      "count": 9
     },
     {
       "group": "Shopping",
@@ -157,6 +170,11 @@ window.TRIP_DATA = {
       "count": 40
     },
     {
+      "group": "Activities",
+      "totalJPY": 37383,
+      "count": 3
+    },
+    {
       "group": "Physical Cash",
       "totalJPY": 30220,
       "count": 1
@@ -167,27 +185,35 @@ window.TRIP_DATA = {
       "count": 5
     },
     {
-      "group": "Activities",
-      "totalJPY": 9225,
-      "count": 2
-    },
-    {
       "group": "Trip Setup",
       "totalJPY": 5400,
       "count": 1
-    },
-    {
-      "group": "Lodging",
-      "totalJPY": 3670,
-      "count": 3
     }
   ],
   "merchantTotals": [
     {
+      "merchant": "International flights",
+      "totalJPY": 915090,
+      "count": 1,
+      "category": "flights"
+    },
+    {
+      "merchant": "Hotel booking",
+      "totalJPY": 452705,
+      "count": 6,
+      "category": "lodging"
+    },
+    {
       "merchant": "JR Central",
-      "totalJPY": 189170,
+      "totalJPY": 136480,
       "count": 3,
-      "category": "transport"
+      "category": "local-transit"
+    },
+    {
+      "merchant": "Domestic flight",
+      "totalJPY": 42791,
+      "count": 1,
+      "category": "flights"
     },
     {
       "merchant": "BicCamera Akiba",
@@ -202,6 +228,12 @@ window.TRIP_DATA = {
       "category": "physical-cash"
     },
     {
+      "merchant": "Klook",
+      "totalJPY": 28158,
+      "count": 1,
+      "category": "attractions"
+    },
+    {
       "merchant": "Magazines Ueno Hirokoji",
       "totalJPY": 24200,
       "count": 2,
@@ -211,13 +243,13 @@ window.TRIP_DATA = {
       "merchant": "Suica via Apple Pay",
       "totalJPY": 20000,
       "count": 1,
-      "category": "transport"
+      "category": "local-transit"
     },
     {
       "merchant": "Suica",
       "totalJPY": 20000,
       "count": 2,
-      "category": "transport"
+      "category": "local-transit"
     },
     {
       "merchant": "GU",
@@ -278,30 +310,6 @@ window.TRIP_DATA = {
       "totalJPY": 7259,
       "count": 4,
       "category": "pharmacy-beauty"
-    },
-    {
-      "merchant": "and Milano Akihabara",
-      "totalJPY": 7240,
-      "count": 1,
-      "category": "anime-hobby"
-    },
-    {
-      "merchant": "Laforet Harajuku",
-      "totalJPY": 6918,
-      "count": 1,
-      "category": "clothing"
-    },
-    {
-      "merchant": "Don Quijote",
-      "totalJPY": 6597,
-      "count": 1,
-      "category": "general-shopping"
-    },
-    {
-      "merchant": "Akiba no X",
-      "totalJPY": 5440,
-      "count": 1,
-      "category": "anime-hobby"
     }
   ],
   "dailyTotals": [
@@ -311,9 +319,14 @@ window.TRIP_DATA = {
       "count": 2
     },
     {
+      "date": "2026-03-26",
+      "totalJPY": 915090,
+      "count": 1
+    },
+    {
       "date": "2026-03-27",
-      "totalJPY": 8148,
-      "count": 6
+      "totalJPY": 103232,
+      "count": 7
     },
     {
       "date": "2026-03-28",
@@ -332,8 +345,8 @@ window.TRIP_DATA = {
     },
     {
       "date": "2026-03-31",
-      "totalJPY": 79124,
-      "count": 6
+      "totalJPY": 178475,
+      "count": 7
     },
     {
       "date": "2026-04-01",
@@ -347,8 +360,8 @@ window.TRIP_DATA = {
     },
     {
       "date": "2026-04-03",
-      "totalJPY": 127737,
-      "count": 4
+      "totalJPY": 177060,
+      "count": 5
     },
     {
       "date": "2026-04-04",
@@ -357,8 +370,8 @@ window.TRIP_DATA = {
     },
     {
       "date": "2026-04-05",
-      "totalJPY": 17635,
-      "count": 7
+      "totalJPY": 59497,
+      "count": 8
     },
     {
       "date": "2026-04-06",
@@ -367,8 +380,8 @@ window.TRIP_DATA = {
     },
     {
       "date": "2026-04-07",
-      "totalJPY": 8100,
-      "count": 5
+      "totalJPY": 61700,
+      "count": 6
     },
     {
       "date": "2026-04-08",
@@ -377,13 +390,13 @@ window.TRIP_DATA = {
     },
     {
       "date": "2026-04-09",
-      "totalJPY": 9092,
-      "count": 3
+      "totalJPY": 37250,
+      "count": 4
     },
     {
       "date": "2026-04-10",
-      "totalJPY": 9453,
-      "count": 10
+      "totalJPY": 113039,
+      "count": 12
     },
     {
       "date": "2026-04-11",
@@ -403,6 +416,134 @@ window.TRIP_DATA = {
       "label": "Exchange",
       "totalJPY": 8754,
       "count": 47
+    }
+  ],
+  "manualExpenses": [
+    {
+      "date": "2026-03-27",
+      "startDate": "2026-03-27",
+      "endDate": "2026-03-31",
+      "description": "Hotel stay 27-31 Mar",
+      "normalizedMerchant": "Hotel booking",
+      "amountJPY": 95084,
+      "category": "lodging",
+      "classification": "manual-expense",
+      "notes": "Accommodation booked outside the bank export.",
+      "sourceAmount": 506.52,
+      "sourceCurrency": "EUR",
+      "sourceAmountJPY": 95084
+    },
+    {
+      "date": "2026-03-31",
+      "startDate": "2026-03-31",
+      "endDate": "2026-04-03",
+      "description": "Hotel stay 31 Mar-3 Apr",
+      "normalizedMerchant": "Hotel booking",
+      "amountJPY": 99351,
+      "category": "lodging",
+      "classification": "manual-expense",
+      "notes": "Accommodation booked outside the bank export.",
+      "sourceAmount": 529.25,
+      "sourceCurrency": "EUR",
+      "sourceAmountJPY": 99351
+    },
+    {
+      "date": "2026-04-03",
+      "startDate": "2026-04-03",
+      "endDate": "2026-04-05",
+      "description": "Hotel stay 3-5 Apr",
+      "normalizedMerchant": "Hotel booking",
+      "amountJPY": 102013,
+      "category": "lodging",
+      "classification": "manual-expense",
+      "notes": "Accommodation booked outside the bank export.",
+      "sourceAmount": 543.43,
+      "sourceCurrency": "EUR",
+      "sourceAmountJPY": 102013
+    },
+    {
+      "date": "2026-04-05",
+      "startDate": "2026-04-05",
+      "endDate": "2026-04-07",
+      "description": "Hotel stay 5-7 Apr",
+      "normalizedMerchant": "Hotel booking",
+      "amountJPY": 41862,
+      "category": "lodging",
+      "classification": "manual-expense",
+      "notes": "Accommodation booked outside the bank export.",
+      "sourceAmount": 223,
+      "sourceCurrency": "EUR",
+      "sourceAmountJPY": 41862
+    },
+    {
+      "date": "2026-04-07",
+      "startDate": "2026-04-07",
+      "endDate": "2026-04-10",
+      "description": "Hotel stay 7-10 Apr",
+      "normalizedMerchant": "Hotel booking",
+      "amountJPY": 53600,
+      "category": "lodging",
+      "classification": "manual-expense",
+      "notes": "Accommodation booked outside the bank export.",
+      "sourceAmount": 285.53,
+      "sourceCurrency": "EUR",
+      "sourceAmountJPY": 53600
+    },
+    {
+      "date": "2026-04-10",
+      "startDate": "2026-04-10",
+      "endDate": "2026-04-12",
+      "description": "Hotel stay 10-12 Apr",
+      "normalizedMerchant": "Hotel booking",
+      "amountJPY": 60795,
+      "category": "lodging",
+      "classification": "manual-expense",
+      "notes": "Accommodation booked outside the bank export.",
+      "sourceAmount": 323.86,
+      "sourceCurrency": "EUR",
+      "sourceAmountJPY": 60795
+    },
+    {
+      "date": "2026-04-09",
+      "startDate": "2026-04-09",
+      "endDate": "2026-04-09",
+      "description": "Klook paid tour",
+      "normalizedMerchant": "Klook",
+      "amountJPY": 28158,
+      "category": "attractions",
+      "classification": "manual-expense",
+      "notes": "Paid tour booked via Klook.",
+      "sourceAmount": 150,
+      "sourceCurrency": "EUR",
+      "sourceAmountJPY": 28158
+    },
+    {
+      "date": "2026-03-26",
+      "startDate": "2026-03-26",
+      "endDate": "2026-03-26",
+      "description": "Main round-trip flights Lisbon-Tokyo-Lisbon",
+      "normalizedMerchant": "International flights",
+      "amountJPY": 915090,
+      "category": "flights",
+      "classification": "manual-expense",
+      "notes": "Main international flights: 26 Mar outbound, 12 Apr return.",
+      "sourceAmount": 4874.76,
+      "sourceCurrency": "EUR",
+      "sourceAmountJPY": 915090
+    },
+    {
+      "date": "2026-04-10",
+      "startDate": "2026-04-10",
+      "endDate": "2026-04-10",
+      "description": "Internal flight Fukuoka-Tokyo",
+      "normalizedMerchant": "Domestic flight",
+      "amountJPY": 42791,
+      "category": "flights",
+      "classification": "manual-expense",
+      "notes": "Internal flight from Fukuoka to Tokyo.",
+      "sourceAmount": 227.95,
+      "sourceCurrency": "EUR",
+      "sourceAmountJPY": 42791
     }
   ],
   "reviewTransactions": []
