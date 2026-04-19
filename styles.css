@@ -444,6 +444,11 @@ h2 {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr) minmax(0, 1fr) auto;
 }
 
+.excluded-detail-list {
+  margin-top: 18px;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) auto;
+}
+
 .list-header {
   color: var(--muted);
   font-size: 0.85rem;
@@ -566,7 +571,8 @@ code {
   .review-list .table-row,
   .manual-list,
   .lodging-list,
-  .explorer-entry-list {
+  .explorer-entry-list,
+  .excluded-detail-list {
     grid-template-columns: 1fr;
   }
 

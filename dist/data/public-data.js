@@ -1,5 +1,5 @@
 window.TRIP_DATA = {
-  "generatedAt": "2026-04-19T20:16:23.198Z",
+  "generatedAt": "2026-04-19T20:26:07.645Z",
   "currency": "JPY",
   "fx": {
     "baseCurrency": "JPY",
@@ -25,6 +25,9 @@ window.TRIP_DATA = {
   },
   "summary": {
     "totalSpendJPY": 1922970,
+    "netTripSpendJPY": 1922970,
+    "grossPaidOutJPY": 1978930,
+    "recoveredCostsJPY": 55960,
     "purchaseSpendJPY": 1812750,
     "trackedTransactionCount": 108,
     "physicalCashJPY": 110220,
@@ -802,6 +805,22 @@ window.TRIP_DATA = {
       "label": "Reimbursed Payment",
       "totalJPY": 55960,
       "count": 2
+    }
+  ],
+  "reimbursedEntries": [
+    {
+      "date": "2026-03-31",
+      "description": "JR Central Tokyo Head Office",
+      "normalizedMerchant": "JR Central",
+      "amountJPY": 39960,
+      "notes": "Excluded from trip spend because this payment was made on someone else's behalf and reimbursed already."
+    },
+    {
+      "date": "2026-04-11",
+      "description": "Magazines Uenohirokoji",
+      "normalizedMerchant": "Magazines Ueno Hirokoji",
+      "amountJPY": 16000,
+      "notes": "Excluded from trip spend because this purchase was made on someone else's behalf and reimbursed already."
     }
   ],
   "spendEntries": [

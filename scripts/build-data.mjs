@@ -37,6 +37,9 @@ const manualNonCashExpenses = manualExpenses.filter(
 const physicalCashTransactions = transactions.filter(
   (transaction) => transaction.classification === "cash-withdrawal",
 );
+const reimbursedPaymentTransactions = transactions.filter(
+  (transaction) => transaction.classification === "reimbursed-payment",
+);
 const purchaseTransactions = transactions.filter(
   (transaction) =>
     transaction.includeInTrackedSpend &&
@@ -59,6 +62,8 @@ const tripEnd = maximumDate(totalSpendItems.map((item) => item.date));
 const purchaseSpendTotal = sumAbs(trackedItems);
 const physicalCashTotal = sumAbs(physicalCashItems);
 const totalSpendJPY = purchaseSpendTotal + physicalCashTotal;
+const recoveredCostsJPY = sumAbs(reimbursedPaymentTransactions);
+const grossPaidOutJPY = totalSpendJPY + recoveredCostsJPY;
 const tripDays = tripStart && tripEnd ? inclusiveDays(tripStart, tripEnd) : 0;
 const averagePerDay = tripDays ? totalSpendJPY / tripDays : 0;
 
@@ -188,6 +193,16 @@ const excludedSummary = summarizeBy(
   count: entry.count,
 }));
 
+const reimbursedEntries = reimbursedPaymentTransactions
+  .map((transaction) => ({
+    date: transaction.date,
+    description: transaction.description,
+    normalizedMerchant: transaction.normalizedMerchant,
+    amountJPY: Math.abs(transaction.amountJPY),
+    notes: transaction.notes,
+  }))
+  .sort((left, right) => left.date.localeCompare(right.date));
+
 const output = {
   generatedAt: new Date().toISOString(),
   currency: "JPY",
@@ -202,6 +217,9 @@ const output = {
   },
   summary: {
     totalSpendJPY,
+    netTripSpendJPY: totalSpendJPY,
+    grossPaidOutJPY,
+    recoveredCostsJPY,
     purchaseSpendJPY: purchaseSpendTotal,
     trackedTransactionCount: totalSpendItems.length,
     physicalCashJPY: physicalCashTotal,
@@ -234,6 +252,7 @@ const publicOutput = {
   dailyTotals: output.dailyTotals,
   dailyCategoryTotals: output.dailyCategoryTotals,
   excludedSummary: output.excludedSummary,
+  reimbursedEntries,
   spendEntries: publicSpendEntries,
   manualExpenses: output.manualExpenses.map((expense) => ({
     date: expense.date,

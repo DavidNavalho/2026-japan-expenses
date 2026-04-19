@@ -47,7 +47,7 @@ function renderSnapshot(data) {
       <div>
         <h2>Snapshot</h2>
         <p class="panel-intro">
-          This is a single shared-trip view. Total spend includes both recorded purchases and physical cash withdrawn during the trip.
+          This is a single shared-trip view. Net trip spend excludes fully reimbursed pass-through payments, while gross paid out includes them so the cash flow stays visible.
         </p>
       </div>
       <div class="currency-switcher" role="tablist" aria-label="Currency toggle">
@@ -61,8 +61,9 @@ function renderSnapshot(data) {
       ${fxDate ? ` Rate date: ${escapeHtml(fxDate)}.` : ""}
     </p>
     <div class="kpi-grid">
-      ${kpiCard("Total spend", formatMoney(data.summary.totalSpendJPY, data))}
-      ${kpiCard("Non-cash spend", formatMoney(data.summary.purchaseSpendJPY, data))}
+      ${kpiCard("Net trip spend", formatMoney(data.summary.netTripSpendJPY ?? data.summary.totalSpendJPY, data))}
+      ${kpiCard("Gross paid out", formatMoney(data.summary.grossPaidOutJPY ?? data.summary.totalSpendJPY, data))}
+      ${kpiCard("Recovered costs", formatMoney(data.summary.recoveredCostsJPY ?? 0, data))}
       ${kpiCard("Physical cash", formatMoney(data.summary.physicalCashJPY, data))}
       ${kpiCard("Trip window", `${data.tripWindow.start} to ${data.tripWindow.end}`)}
       ${kpiCard("Average per day", formatMoney(data.summary.averagePerDayJPY, data))}
@@ -157,7 +158,9 @@ function renderTimeline(data) {
 function renderManualExpenses(data) {
   const manualExpenses = document.getElementById("manual-expenses");
   const nonLodgingManualExpenses =
-    data.manualExpenses?.filter((entry) => entry.category !== "lodging") ?? [];
+    data.manualExpenses?.filter(
+      (entry) => entry.category !== "lodging" && entry.category !== "physical-cash",
+    ) ?? [];
 
   manualExpenses.innerHTML = `
     <h2>Prebooked Costs</h2>
@@ -319,7 +322,7 @@ function renderExcluded(data) {
   excluded.innerHTML = `
     <h2>Excluded movements</h2>
     <p class="panel-intro">
-      Only funding moves are excluded. Physical cash withdrawals are included above as trip spend.
+      Funding moves are excluded from trip spend. Reimbursed pass-through payments are also kept out of net trip spend, but still counted in gross paid out.
     </p>
     <div class="stack">
       ${data.excludedSummary
@@ -338,6 +341,33 @@ function renderExcluded(data) {
         )
         .join("")}
     </div>
+    ${
+      data.reimbursedEntries?.length
+        ? `
+          <div class="list excluded-detail-list">
+            <div class="list-header excluded-detail-list">
+              <span>Recovered entry</span>
+              <span>Date</span>
+              <span>Amount</span>
+            </div>
+            ${data.reimbursedEntries
+              .map(
+                (entry) => `
+                  <div class="table-row excluded-detail-list">
+                    <div>
+                      <strong>${escapeHtml(entry.normalizedMerchant || entry.description)}</strong>
+                      <div class="merchant-breakdown">${escapeHtml(entry.notes || "")}</div>
+                    </div>
+                    <span>${escapeHtml(entry.date)}</span>
+                    <strong>${formatMoney(entry.amountJPY, data)}</strong>
+                  </div>
+                `,
+              )
+              .join("")}
+          </div>
+        `
+        : ""
+    }
   `;
 }
 
