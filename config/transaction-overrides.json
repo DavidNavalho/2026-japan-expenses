@@ -1,0 +1,41 @@
+{
+  "overrides": [
+    {
+      "match": {
+        "description": "Apple",
+        "amount": -20000
+      },
+      "set": {
+        "category": "transport",
+        "group": "Transport",
+        "normalizedMerchant": "Suica via Apple Pay",
+        "review": false,
+        "notes": "User note: this Apple transaction is a Suica top-up made with Apple Pay."
+      }
+    },
+    {
+      "match": {
+        "description": "Rakutenpay Fushimiinariom"
+      },
+      "set": {
+        "category": "souvenirs",
+        "group": "Shopping",
+        "normalizedMerchant": "Fushimi Inari purchase",
+        "review": false,
+        "notes": "Souvenir or amulet purchase from Fushimi Inari."
+      }
+    },
+    {
+      "match": {
+        "description": "Yuugengaishiyakawaharae"
+      },
+      "set": {
+        "category": "souvenirs",
+        "group": "Shopping",
+        "normalizedMerchant": "Kawaharae",
+        "review": false,
+        "notes": "Assumed shop or souvenir purchase."
+      }
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Japan 2026 Costs</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Japan 2026</p>
+          <h1>Trip spending dashboard</h1>
+          <p class="hero-text">
+            First-pass view over both bank exports, with funding movements excluded,
+            transport top-ups normalized, and a review queue for anything still unclear.
+          </p>
+        </div>
+        <div class="hero-badge">
+          <span>Editable</span>
+          <strong>rules + manual costs</strong>
+        </div>
+      </header>
+
+      <main class="layout">
+        <section class="panel spotlight" id="snapshot"></section>
+
+        <section class="panel" id="categories"></section>
+        <section class="panel wide" id="timeline"></section>
+        <section class="panel wide" id="merchants"></section>
+        <section class="panel wide" id="review"></section>
+        <section class="panel" id="excluded"></section>
+        <section class="panel" id="next-steps"></section>
+      </main>
+    </div>
+
+    <script src="./data/public-data.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,576 @@
+{
+  "accounts": [
+    {
+      "file": "private/account-a.csv"
+    },
+    {
+      "file": "private/account-b.csv"
+    }
+  ],
+  "rules": [
+    {
+      "match": {
+        "type": "Exchange"
+      },
+      "set": {
+        "classification": "exchange",
+        "includeInTrackedSpend": false,
+        "category": "internal-movement",
+        "group": "Excluded",
+        "normalizedMerchant": "Currency exchange",
+        "notes": "Currency conversions are funding movements, not trip purchases."
+      }
+    },
+    {
+      "match": {
+        "type": "Transfer"
+      },
+      "set": {
+        "classification": "transfer",
+        "includeInTrackedSpend": false,
+        "category": "internal-movement",
+        "group": "Excluded",
+        "normalizedMerchant": "Account transfer",
+        "notes": "Transfers between savings/current accounts or between people are excluded from spend."
+      }
+    },
+    {
+      "match": {
+        "type": "ATM"
+      },
+      "set": {
+        "classification": "cash-withdrawal",
+        "includeInTrackedSpend": true,
+        "category": "physical-cash",
+        "group": "Physical Cash",
+        "normalizedMerchant": "ATM cash withdrawal",
+        "review": false,
+        "notes": "Physical cash used during the trip across several purposes. Counted in total trip spend, but not broken down further."
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Suica Mobile Payment"
+      },
+      "set": {
+        "category": "transport",
+        "group": "Transport",
+        "normalizedMerchant": "Suica",
+        "notes": "Transit card top-up."
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "JR Central Tokyo Head Office"
+      },
+      "set": {
+        "category": "transport",
+        "group": "Transport",
+        "normalizedMerchant": "JR Central",
+        "notes": "Likely Shinkansen or long-distance rail tickets."
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "JR-EAST"
+      },
+      "set": {
+        "category": "transport",
+        "group": "Transport",
+        "normalizedMerchant": "JR East",
+        "notes": "Rail fare or ticket purchase."
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "FamilyMart"
+      },
+      "set": {
+        "category": "convenience-store",
+        "group": "Food & Drink",
+        "normalizedMerchant": "FamilyMart"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Lawson"
+      },
+      "set": {
+        "category": "convenience-store",
+        "group": "Food & Drink",
+        "normalizedMerchant": "Lawson"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "7-Eleven"
+      },
+      "set": {
+        "category": "convenience-store",
+        "group": "Food & Drink",
+        "normalizedMerchant": "7-Eleven"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Deiriyamazaki"
+      },
+      "set": {
+        "category": "convenience-store",
+        "group": "Food & Drink",
+        "normalizedMerchant": "Daily Yamazaki"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "McDonald's"
+      },
+      "set": {
+        "category": "food-drink",
+        "group": "Food & Drink",
+        "normalizedMerchant": "McDonald's"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Maccha House Gionshijy"
+      },
+      "set": {
+        "category": "food-drink",
+        "group": "Food & Drink",
+        "normalizedMerchant": "Maccha House Gion Shijo"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Yokohama Kurikoan"
+      },
+      "set": {
+        "category": "food-drink",
+        "group": "Food & Drink",
+        "normalizedMerchant": "Yokohama Kurikoan"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Precious Deli Gift"
+      },
+      "set": {
+        "category": "food-drink",
+        "group": "Food & Drink",
+        "normalizedMerchant": "Precious Deli Gift"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Kinshosutoa(sainresu)"
+      },
+      "set": {
+        "category": "food-drink",
+        "group": "Food & Drink",
+        "normalizedMerchant": "Kinsho Store"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Shikinocyayashiraitono"
+      },
+      "set": {
+        "category": "general-shopping",
+        "group": "Shopping",
+        "normalizedMerchant": "Shikinocha Yashiraitono",
+        "review": false,
+        "notes": "Filed as general shopping."
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Umijigoku Cafeteria"
+      },
+      "set": {
+        "category": "food-drink",
+        "group": "Food & Drink",
+        "normalizedMerchant": "Umi Jigoku Cafeteria",
+        "notes": "Food or drinks bought inside the attraction area."
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Sugi Pharmacy"
+      },
+      "set": {
+        "category": "pharmacy-beauty",
+        "group": "Health & Beauty",
+        "normalizedMerchant": "Sugi Pharmacy"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Matsumoto Kiyoshi"
+      },
+      "set": {
+        "category": "pharmacy-beauty",
+        "group": "Health & Beauty",
+        "normalizedMerchant": "Matsumoto Kiyoshi"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "UNIQLO"
+      },
+      "set": {
+        "category": "clothing",
+        "group": "Shopping",
+        "normalizedMerchant": "UNIQLO"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "GU"
+      },
+      "set": {
+        "category": "clothing",
+        "group": "Shopping",
+        "normalizedMerchant": "GU"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Laforet Harajuku"
+      },
+      "set": {
+        "category": "clothing",
+        "group": "Shopping",
+        "normalizedMerchant": "Laforet Harajuku"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Akibanoxakihabarahonte"
+      },
+      "set": {
+        "category": "anime-hobby",
+        "group": "Shopping",
+        "normalizedMerchant": "Akiba no X"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Surugayaakihabaraekimaete"
+      },
+      "set": {
+        "category": "anime-hobby",
+        "group": "Shopping",
+        "normalizedMerchant": "Surugaya Akihabara"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "And Milano Akihabara"
+      },
+      "set": {
+        "category": "anime-hobby",
+        "group": "Shopping",
+        "normalizedMerchant": "and Milano Akihabara"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Nakanofactory"
+      },
+      "set": {
+        "category": "anime-hobby",
+        "group": "Shopping",
+        "normalizedMerchant": "Nakano Factory"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Magajinzu Uenohirokojiten"
+      },
+      "set": {
+        "category": "general-shopping",
+        "group": "Shopping",
+        "normalizedMerchant": "Magazines Ueno Hirokoji",
+        "review": false,
+        "notes": "Shopping: clothes, bags, hats."
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Magazines Uenohirokoji"
+      },
+      "set": {
+        "category": "general-shopping",
+        "group": "Shopping",
+        "normalizedMerchant": "Magazines Ueno Hirokoji",
+        "review": false,
+        "notes": "Shopping: clothes, bags, hats."
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Daiso Japan"
+      },
+      "set": {
+        "category": "general-shopping",
+        "group": "Shopping",
+        "normalizedMerchant": "Daiso"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Donki"
+      },
+      "set": {
+        "category": "general-shopping",
+        "group": "Shopping",
+        "normalizedMerchant": "Don Quijote"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Don Quijote Asakusa"
+      },
+      "set": {
+        "category": "general-shopping",
+        "group": "Shopping",
+        "normalizedMerchant": "Don Quijote Asakusa"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "BicCamera AKIBA Store"
+      },
+      "set": {
+        "category": "general-shopping",
+        "group": "Shopping",
+        "normalizedMerchant": "BicCamera Akiba"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Yodobashi"
+      },
+      "set": {
+        "category": "general-shopping",
+        "group": "Shopping",
+        "normalizedMerchant": "Yodobashi"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Rakuten"
+      },
+      "set": {
+        "category": "general-shopping",
+        "group": "Shopping",
+        "normalizedMerchant": "Rakuten",
+        "review": false,
+        "notes": "General shopping: stationery, hair products, and similar items."
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "OPA Club"
+      },
+      "set": {
+        "category": "general-shopping",
+        "group": "Shopping",
+        "normalizedMerchant": "OPA Club"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Life Spirits.co"
+      },
+      "set": {
+        "category": "general-shopping",
+        "group": "Shopping",
+        "normalizedMerchant": "Life Spirits"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Tokyokyukiyodo"
+      },
+      "set": {
+        "category": "general-shopping",
+        "group": "Shopping",
+        "normalizedMerchant": "Tokyo Kyukiyodo",
+        "review": false,
+        "notes": "General shopping: mostly stationery."
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Izumi You Me"
+      },
+      "set": {
+        "category": "general-shopping",
+        "group": "Shopping",
+        "normalizedMerchant": "Izumi YouMe"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Bead"
+      },
+      "set": {
+        "category": "general-shopping",
+        "group": "Shopping",
+        "normalizedMerchant": "Bead",
+        "review": false,
+        "notes": "General shopping."
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Ginzahakuhinkan/nfc"
+      },
+      "set": {
+        "category": "toys",
+        "group": "Shopping",
+        "normalizedMerchant": "Ginza Hakuhinkan",
+        "review": false,
+        "notes": "Children's toy shop."
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Kazarikiyomizu"
+      },
+      "set": {
+        "category": "souvenirs",
+        "group": "Shopping",
+        "normalizedMerchant": "Kazarikiyomizu"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Kimuraohshido"
+      },
+      "set": {
+        "category": "souvenirs",
+        "group": "Shopping",
+        "normalizedMerchant": "Kimura Ohshido"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Kyushumeihingura Fukuoka"
+      },
+      "set": {
+        "category": "souvenirs",
+        "group": "Shopping",
+        "normalizedMerchant": "Kyushu Meihingura Fukuoka"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Kyushumeihingura Fukuo"
+      },
+      "set": {
+        "category": "souvenirs",
+        "group": "Shopping",
+        "normalizedMerchant": "Kyushu Meihingura Fukuoka"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Miyageshiyotsupumarumis"
+      },
+      "set": {
+        "category": "souvenirs",
+        "group": "Shopping",
+        "normalizedMerchant": "Miyage Shop",
+        "review": false,
+        "notes": "Souvenir purchase."
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Tabanenoshi"
+      },
+      "set": {
+        "category": "souvenirs",
+        "group": "Shopping",
+        "normalizedMerchant": "Tabanenoshi"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Tokyo Mikke"
+      },
+      "set": {
+        "category": "souvenirs",
+        "group": "Shopping",
+        "normalizedMerchant": "Tokyo Mikke"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Umijigokushopren"
+      },
+      "set": {
+        "category": "souvenirs",
+        "group": "Shopping",
+        "normalizedMerchant": "Umi Jigoku Shop"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Tokyo Skytree"
+      },
+      "set": {
+        "category": "attractions",
+        "group": "Activities",
+        "normalizedMerchant": "Tokyo Skytree"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Beppu Tower"
+      },
+      "set": {
+        "category": "attractions",
+        "group": "Activities",
+        "normalizedMerchant": "Beppu Tower"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Mobal"
+      },
+      "set": {
+        "category": "connectivity",
+        "group": "Trip Setup",
+        "normalizedMerchant": "Mobal"
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "Washington Hotels"
+      },
+      "set": {
+        "category": "lodging",
+        "group": "Lodging",
+        "normalizedMerchant": "Washington Hotels",
+        "review": false,
+        "notes": "Hotel tourist tax."
+      }
+    },
+    {
+      "match": {
+        "descriptionContains": "The Blossom Hakata Premier"
+      },
+      "set": {
+        "category": "lodging",
+        "group": "Lodging",
+        "normalizedMerchant": "The Blossom Hakata Premier",
+        "review": false,
+        "notes": "Hotel charge, likely tourist tax or a similar on-site cost."
+      }
+    }
+  ]
+}

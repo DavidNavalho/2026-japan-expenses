@@ -1,0 +1,4 @@
+.DS_Store
+private/
+data/processed-data.js
+data/processed-data.json
