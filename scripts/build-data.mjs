@@ -6,6 +6,7 @@ const rootDir = process.cwd();
 const configDir = path.join(rootDir, "config");
 const outputDir = path.join(rootDir, "data");
 const distDir = path.join(rootDir, "dist");
+const indexTemplatePath = path.join(rootDir, "index.html");
 
 const merchantConfig = readJson(path.join(configDir, "merchant-rules.json"));
 const overridesConfig = readJson(path.join(configDir, "transaction-overrides.json"));
@@ -239,6 +240,7 @@ const output = {
   manualExpenses,
   reviewTransactions: ambiguousTransactions,
 };
+const buildVersion = output.generatedAt.replace(/[^0-9]/g, "").slice(0, 14);
 
 const publicOutput = {
   generatedAt: output.generatedAt,
@@ -551,7 +553,9 @@ function convertToJPY({ amount, currency }) {
 function prepareDist(publicOutput) {
   fs.rmSync(distDir, { recursive: true, force: true });
   fs.mkdirSync(path.join(distDir, "data"), { recursive: true });
-  fs.copyFileSync(path.join(rootDir, "index.html"), path.join(distDir, "index.html"));
+  const indexTemplate = fs.readFileSync(indexTemplatePath, "utf8");
+  const versionedIndex = applyCacheBusting(indexTemplate, buildVersion);
+  fs.writeFileSync(path.join(distDir, "index.html"), versionedIndex);
   fs.copyFileSync(path.join(rootDir, "app.js"), path.join(distDir, "app.js"));
   fs.copyFileSync(path.join(rootDir, "styles.css"), path.join(distDir, "styles.css"));
   fs.writeFileSync(path.join(distDir, ".nojekyll"), "");
@@ -563,4 +567,11 @@ function prepareDist(publicOutput) {
     path.join(distDir, "data", "public-data.json"),
     `${JSON.stringify(publicOutput, null, 2)}\n`,
   );
+}
+
+function applyCacheBusting(indexHtml, version) {
+  return indexHtml
+    .replace('./styles.css"', `./styles.css?v=${version}"`)
+    .replace('./data/public-data.js"', `./data/public-data.js?v=${version}"`)
+    .replace('./app.js"', `./app.js?v=${version}"`);
 }

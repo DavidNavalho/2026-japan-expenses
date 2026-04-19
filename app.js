@@ -318,55 +318,38 @@ function renderReview(data) {
 
 function renderExcluded(data) {
   const excluded = document.getElementById("excluded");
+  const hiddenClassifications = new Set(["transfer", "exchange", "reimbursed-payment"]);
+  const visibleExcludedEntries = (data.excludedSummary ?? []).filter(
+    (entry) => !hiddenClassifications.has(entry.classification),
+  );
 
   excluded.innerHTML = `
     <h2>Excluded movements</h2>
     <p class="panel-intro">
-      Funding moves are excluded from trip spend. Reimbursed pass-through payments are also kept out of net trip spend, but still counted in gross paid out.
+      This section is reserved for movements that were explicitly ignored for the trip and are still worth surfacing. Internal transfers, account savings exchanges, and reimbursed pass-through payments are intentionally kept out of this view.
     </p>
-    <div class="stack">
-      ${data.excludedSummary
-        .map(
-          (entry) => `
-            <div class="row">
-              <div class="row-header">
-                <strong>${escapeHtml(entry.label)}</strong>
-                <span>${entry.count} entries · ${formatMoney(entry.totalJPY, data)}</span>
-              </div>
-              <div class="pill">
-                ${escapeHtml("Ignored in spend totals")}
-              </div>
-            </div>
-          `,
-        )
-        .join("")}
-    </div>
     ${
-      data.reimbursedEntries?.length
+      visibleExcludedEntries.length
         ? `
-          <div class="list excluded-detail-list">
-            <div class="list-header excluded-detail-list">
-              <span>Recovered entry</span>
-              <span>Date</span>
-              <span>Amount</span>
-            </div>
-            ${data.reimbursedEntries
+          <div class="stack">
+            ${visibleExcludedEntries
               .map(
                 (entry) => `
-                  <div class="table-row excluded-detail-list">
-                    <div>
-                      <strong>${escapeHtml(entry.normalizedMerchant || entry.description)}</strong>
-                      <div class="merchant-breakdown">${escapeHtml(entry.notes || "")}</div>
+                  <div class="row">
+                    <div class="row-header">
+                      <strong>${escapeHtml(entry.label)}</strong>
+                      <span>${entry.count} entries · ${formatMoney(entry.totalJPY, data)}</span>
                     </div>
-                    <span>${escapeHtml(entry.date)}</span>
-                    <strong>${formatMoney(entry.amountJPY, data)}</strong>
+                    <div class="pill">
+                      ${escapeHtml("Ignored in spend totals")}
+                    </div>
                   </div>
                 `,
               )
               .join("")}
           </div>
         `
-        : ""
+        : '<p class="panel-intro">No explicitly ignored movements are currently surfaced here.</p>'
     }
   `;
 }
