@@ -204,6 +204,36 @@ h2 {
   box-shadow: 0 10px 20px rgba(143, 52, 17, 0.18);
 }
 
+.timeline-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.timeline-filter-button {
+  border: 1px solid rgba(35, 23, 15, 0.12);
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255, 252, 247, 0.86);
+  color: var(--muted);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.timeline-filter-button:hover {
+  color: var(--accent-deep);
+}
+
+.timeline-filter-button.is-active {
+  border-color: transparent;
+  background: rgba(198, 95, 32, 0.14);
+  color: var(--accent-deep);
+  box-shadow: inset 0 0 0 1px rgba(198, 95, 32, 0.16);
+}
+
 .kpi-grid {
   display: grid;
   gap: 14px;
@@ -452,6 +482,10 @@ code {
   .panel-header {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .timeline-filters {
+    justify-content: flex-start;
   }
 
   .list-header,

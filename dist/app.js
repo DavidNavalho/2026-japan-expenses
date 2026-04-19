@@ -1,5 +1,6 @@
 const state = {
   currency: "JPY",
+  timelineFilter: "all",
 };
 
 (function renderDashboard() {
@@ -98,26 +99,48 @@ function renderCategories(data) {
 
 function renderTimeline(data) {
   const timeline = document.getElementById("timeline");
-  const maxValue = Math.max(...data.dailyTotals.map((entry) => entry.totalJPY), 1);
+  const timelineFilters = [
+    { value: "all", label: "All" },
+    { value: "lodging", label: "Lodging" },
+    { value: "local-transit", label: "Transportation" },
+    { value: "general-shopping", label: "General Shopping" },
+    { value: "flights", label: "Flights" },
+  ];
+  const filteredDailyTotals = buildTimelineSeries(data);
+  const maxValue = Math.max(...filteredDailyTotals.map((entry) => entry.totalJPY), 1);
+  const hasVisibleData = filteredDailyTotals.some((entry) => entry.totalJPY > 0);
 
   timeline.innerHTML = `
-    <h2>Daily spend</h2>
-    <p class="panel-intro">
-      Totals per day across both exports and any manual entries you add later.
-    </p>
-    <div class="timeline">
-      <div class="timeline-bars">
-        ${data.dailyTotals
-          .map(
-            (entry) => `
-              <div class="timeline-column" style="--bar-height: ${Math.max(percent(entry.totalJPY, maxValue), 6)}%">
-                <strong>${shortMoney(entry.totalJPY, data)}</strong>
-                <span>${escapeHtml(entry.date.slice(5))}</span>
-              </div>
-            `,
-          )
-          .join("")}
+    <div class="panel-header">
+      <div>
+        <h2>Daily spend</h2>
+        <p class="panel-intro">
+          Totals per day across the trip. Use the filter to isolate major cost areas without exposing transaction-level details.
+        </p>
       </div>
+      <div class="timeline-filters" role="tablist" aria-label="Daily spend filter">
+        ${timelineFilters.map((filter) => timelineFilterButton(filter)).join("")}
+      </div>
+    </div>
+    <div class="timeline">
+      ${
+        hasVisibleData
+          ? `
+            <div class="timeline-bars">
+              ${filteredDailyTotals
+                .map(
+                  (entry) => `
+                    <div class="timeline-column" style="--bar-height: ${Math.max(percent(entry.totalJPY, maxValue), 6)}%">
+                      <strong>${entry.totalJPY > 0 ? shortMoney(entry.totalJPY, data) : ""}</strong>
+                      <span>${escapeHtml(entry.date.slice(5))}</span>
+                    </div>
+                  `,
+                )
+                .join("")}
+            </div>
+          `
+          : '<p class="panel-intro">No spend matched this filter in the current trip window.</p>'
+      }
     </div>
   `;
 }
@@ -345,21 +368,77 @@ function currencyButton(currency, label) {
   `;
 }
 
+function timelineFilterButton(filter) {
+  return `
+    <button
+      type="button"
+      class="timeline-filter-button ${state.timelineFilter === filter.value ? "is-active" : ""}"
+      data-timeline-filter="${filter.value}"
+      role="tab"
+      aria-selected="${state.timelineFilter === filter.value}"
+    >
+      ${escapeHtml(filter.label)}
+    </button>
+  `;
+}
+
 function attachCurrencyToggle() {
   document.addEventListener("click", (event) => {
     const toggle = event.target.closest("[data-currency-toggle]");
-    if (!toggle) {
+    if (toggle) {
+      const nextCurrency = toggle.getAttribute("data-currency-toggle");
+      if (!nextCurrency || nextCurrency === state.currency) {
+        return;
+      }
+
+      state.currency = nextCurrency;
+      renderAll(window.TRIP_DATA);
       return;
     }
 
-    const nextCurrency = toggle.getAttribute("data-currency-toggle");
-    if (!nextCurrency || nextCurrency === state.currency) {
+    const timelineFilter = event.target.closest("[data-timeline-filter]");
+    if (!timelineFilter) {
       return;
     }
 
-    state.currency = nextCurrency;
+    const nextFilter = timelineFilter.getAttribute("data-timeline-filter");
+    if (!nextFilter || nextFilter === state.timelineFilter) {
+      return;
+    }
+
+    state.timelineFilter = nextFilter;
     renderAll(window.TRIP_DATA);
   });
+}
+
+function buildTimelineSeries(data) {
+  const totalsByDate = new Map(data.dailyTotals.map((entry) => [entry.date, { ...entry }]));
+
+  if (state.timelineFilter === "all") {
+    return [...totalsByDate.values()];
+  }
+
+  for (const [date, entry] of totalsByDate.entries()) {
+    totalsByDate.set(date, {
+      ...entry,
+      totalJPY: 0,
+      count: 0,
+    });
+  }
+
+  for (const entry of data.dailyCategoryTotals || []) {
+    if (entry.category !== state.timelineFilter) {
+      continue;
+    }
+
+    totalsByDate.set(entry.date, {
+      date: entry.date,
+      totalJPY: entry.totalJPY,
+      count: entry.count,
+    });
+  }
+
+  return [...totalsByDate.values()].sort((left, right) => left.date.localeCompare(right.date));
 }
 
 function percent(value, max) {

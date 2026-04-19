@@ -108,6 +108,28 @@ const dailyTotals = summarizeBy(
   }))
   .sort((left, right) => left.date.localeCompare(right.date));
 
+const dailyCategoryTotals = summarizeBy(
+  totalSpendItems,
+  (item) => `${item.date}::${item.category}`,
+  true,
+)
+  .map((entry) => {
+    const [date, category] = entry.key.split("::");
+    return {
+      date,
+      category,
+      totalJPY: entry.total,
+      count: entry.count,
+    };
+  })
+  .sort((left, right) => {
+    if (left.date === right.date) {
+      return left.category.localeCompare(right.category);
+    }
+
+    return left.date.localeCompare(right.date);
+  });
+
 const ambiguousTransactions = reviewTransactions
   .map((transaction) => ({
     id: transaction.id,
@@ -160,6 +182,7 @@ const output = {
   groupTotals,
   merchantTotals,
   dailyTotals,
+  dailyCategoryTotals,
   excludedSummary,
   transactions,
   manualExpenses,
@@ -176,6 +199,7 @@ const publicOutput = {
   groupTotals: output.groupTotals,
   merchantTotals: output.merchantTotals,
   dailyTotals: output.dailyTotals,
+  dailyCategoryTotals: output.dailyCategoryTotals,
   excludedSummary: output.excludedSummary,
   manualExpenses: output.manualExpenses.map((expense) => ({
     date: expense.date,

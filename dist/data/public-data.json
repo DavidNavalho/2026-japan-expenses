@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-19T16:11:02.868Z",
+  "generatedAt": "2026-04-19T19:59:23.961Z",
   "currency": "JPY",
   "fx": {
     "baseCurrency": "JPY",
@@ -24,14 +24,14 @@
     "days": 18
   },
   "summary": {
-    "totalSpendJPY": 1913350,
-    "purchaseSpendJPY": 1883130,
-    "trackedTransactionCount": 109,
+    "totalSpendJPY": 1857390,
+    "purchaseSpendJPY": 1827170,
+    "trackedTransactionCount": 107,
     "physicalCashJPY": 30220,
     "physicalCashCount": 1,
-    "excludedOutflowJPY": 278417,
+    "excludedOutflowJPY": 334377,
     "reviewCount": 0,
-    "averagePerDayJPY": 106297,
+    "averagePerDayJPY": 103188,
     "manualExpenseCount": 9
   },
   "categoryTotals": [
@@ -41,7 +41,7 @@
       "group": "Transport",
       "totalJPY": 957881,
       "count": 2,
-      "percentOfTotalSpend": 0.5006303080983615
+      "percentOfTotalSpend": 0.5157134473643122
     },
     {
       "category": "lodging",
@@ -49,23 +49,23 @@
       "group": "Lodging",
       "totalJPY": 456375,
       "count": 9,
-      "percentOfTotalSpend": 0.23852144145085843
+      "percentOfTotalSpend": 0.24570768659247655
     },
     {
       "category": "local-transit",
       "label": "Local Transit",
       "group": "Transport",
-      "totalJPY": 180815,
-      "count": 7,
-      "percentOfTotalSpend": 0.0945017900540936
+      "totalJPY": 140855,
+      "count": 6,
+      "percentOfTotalSpend": 0.07583490812376507
     },
     {
       "category": "general-shopping",
       "label": "General Shopping",
       "group": "Shopping",
-      "totalJPY": 113289,
-      "count": 19,
-      "percentOfTotalSpend": 0.0592097629811587
+      "totalJPY": 97289,
+      "count": 18,
+      "percentOfTotalSpend": 0.05237941412412041
     },
     {
       "category": "attractions",
@@ -73,7 +73,7 @@
       "group": "Activities",
       "totalJPY": 37383,
       "count": 3,
-      "percentOfTotalSpend": 0.01953798311861395
+      "percentOfTotalSpend": 0.020126629302408217
     },
     {
       "category": "clothing",
@@ -81,7 +81,7 @@
       "group": "Shopping",
       "totalJPY": 36034,
       "count": 4,
-      "percentOfTotalSpend": 0.01883293699532234
+      "percentOfTotalSpend": 0.019400341339191017
     },
     {
       "category": "physical-cash",
@@ -89,7 +89,7 @@
       "group": "Physical Cash",
       "totalJPY": 30220,
       "count": 1,
-      "percentOfTotalSpend": 0.015794287506206393
+      "percentOfTotalSpend": 0.016270142511804198
     },
     {
       "category": "convenience-store",
@@ -97,7 +97,7 @@
       "group": "Food & Drink",
       "totalJPY": 28960,
       "count": 33,
-      "percentOfTotalSpend": 0.015135756657171975
+      "percentOfTotalSpend": 0.015591771248903031
     },
     {
       "category": "souvenirs",
@@ -105,7 +105,7 @@
       "group": "Shopping",
       "totalJPY": 18535,
       "count": 11,
-      "percentOfTotalSpend": 0.009687197846708653
+      "percentOfTotalSpend": 0.009979056633232654
     },
     {
       "category": "anime-hobby",
@@ -113,7 +113,7 @@
       "group": "Shopping",
       "totalJPY": 18080,
       "count": 5,
-      "percentOfTotalSpend": 0.009449395040112891
+      "percentOfTotalSpend": 0.009734089232740566
     },
     {
       "category": "pharmacy-beauty",
@@ -121,7 +121,7 @@
       "group": "Health & Beauty",
       "totalJPY": 16169,
       "count": 5,
-      "percentOfTotalSpend": 0.008450623252410694
+      "percentOfTotalSpend": 0.008705226150673795
     },
     {
       "category": "food-drink",
@@ -129,7 +129,7 @@
       "group": "Food & Drink",
       "totalJPY": 9479,
       "count": 7,
-      "percentOfTotalSpend": 0.004954138030156532
+      "percentOfTotalSpend": 0.0051033977786033085
     },
     {
       "category": "connectivity",
@@ -137,7 +137,7 @@
       "group": "Trip Setup",
       "totalJPY": 5400,
       "count": 1,
-      "percentOfTotalSpend": 0.0028222750672903547
+      "percentOfTotalSpend": 0.0029073054124335762
     },
     {
       "category": "toys",
@@ -145,14 +145,14 @@
       "group": "Shopping",
       "totalJPY": 4730,
       "count": 2,
-      "percentOfTotalSpend": 0.002472103901533959
+      "percentOfTotalSpend": 0.0025465841853353362
     }
   ],
   "groupTotals": [
     {
       "group": "Transport",
-      "totalJPY": 1138696,
-      "count": 9
+      "totalJPY": 1098736,
+      "count": 8
     },
     {
       "group": "Lodging",
@@ -161,8 +161,8 @@
     },
     {
       "group": "Shopping",
-      "totalJPY": 190668,
-      "count": 41
+      "totalJPY": 174668,
+      "count": 40
     },
     {
       "group": "Food & Drink",
@@ -205,8 +205,8 @@
     },
     {
       "merchant": "JR Central",
-      "totalJPY": 136480,
-      "count": 3,
+      "totalJPY": 96520,
+      "count": 2,
       "category": "local-transit"
     },
     {
@@ -232,12 +232,6 @@
       "totalJPY": 28158,
       "count": 1,
       "category": "attractions"
-    },
-    {
-      "merchant": "Magazines Ueno Hirokoji",
-      "totalJPY": 24200,
-      "count": 2,
-      "category": "general-shopping"
     },
     {
       "merchant": "Suica via Apple Pay",
@@ -294,6 +288,12 @@
       "category": "general-shopping"
     },
     {
+      "merchant": "Magazines Ueno Hirokoji",
+      "totalJPY": 8200,
+      "count": 1,
+      "category": "general-shopping"
+    },
+    {
       "merchant": "Tokyo Skytree",
       "totalJPY": 7740,
       "count": 1,
@@ -345,8 +345,8 @@
     },
     {
       "date": "2026-03-31",
-      "totalJPY": 178475,
-      "count": 7
+      "totalJPY": 138515,
+      "count": 6
     },
     {
       "date": "2026-04-01",
@@ -400,8 +400,382 @@
     },
     {
       "date": "2026-04-11",
-      "totalJPY": 97447,
-      "count": 14
+      "totalJPY": 81447,
+      "count": 13
+    }
+  ],
+  "dailyCategoryTotals": [
+    {
+      "date": "2026-03-25",
+      "category": "local-transit",
+      "totalJPY": 35000,
+      "count": 2
+    },
+    {
+      "date": "2026-03-26",
+      "category": "flights",
+      "totalJPY": 915090,
+      "count": 1
+    },
+    {
+      "date": "2026-03-27",
+      "category": "anime-hobby",
+      "totalJPY": 5840,
+      "count": 2
+    },
+    {
+      "date": "2026-03-27",
+      "category": "convenience-store",
+      "totalJPY": 1278,
+      "count": 2
+    },
+    {
+      "date": "2026-03-27",
+      "category": "food-drink",
+      "totalJPY": 630,
+      "count": 1
+    },
+    {
+      "date": "2026-03-27",
+      "category": "lodging",
+      "totalJPY": 95484,
+      "count": 2
+    },
+    {
+      "date": "2026-03-28",
+      "category": "anime-hobby",
+      "totalJPY": 5000,
+      "count": 2
+    },
+    {
+      "date": "2026-03-28",
+      "category": "convenience-store",
+      "totalJPY": 2663,
+      "count": 3
+    },
+    {
+      "date": "2026-03-28",
+      "category": "physical-cash",
+      "totalJPY": 30220,
+      "count": 1
+    },
+    {
+      "date": "2026-03-29",
+      "category": "convenience-store",
+      "totalJPY": 757,
+      "count": 1
+    },
+    {
+      "date": "2026-03-29",
+      "category": "general-shopping",
+      "totalJPY": 2341,
+      "count": 1
+    },
+    {
+      "date": "2026-03-30",
+      "category": "clothing",
+      "totalJPY": 22546,
+      "count": 2
+    },
+    {
+      "date": "2026-03-30",
+      "category": "convenience-store",
+      "totalJPY": 1891,
+      "count": 3
+    },
+    {
+      "date": "2026-03-30",
+      "category": "general-shopping",
+      "totalJPY": 12811,
+      "count": 2
+    },
+    {
+      "date": "2026-03-30",
+      "category": "toys",
+      "totalJPY": 4730,
+      "count": 2
+    },
+    {
+      "date": "2026-03-31",
+      "category": "anime-hobby",
+      "totalJPY": 7240,
+      "count": 1
+    },
+    {
+      "date": "2026-03-31",
+      "category": "convenience-store",
+      "totalJPY": 949,
+      "count": 2
+    },
+    {
+      "date": "2026-03-31",
+      "category": "local-transit",
+      "totalJPY": 30975,
+      "count": 2
+    },
+    {
+      "date": "2026-03-31",
+      "category": "lodging",
+      "totalJPY": 99351,
+      "count": 1
+    },
+    {
+      "date": "2026-04-01",
+      "category": "connectivity",
+      "totalJPY": 5400,
+      "count": 1
+    },
+    {
+      "date": "2026-04-01",
+      "category": "convenience-store",
+      "totalJPY": 4499,
+      "count": 1
+    },
+    {
+      "date": "2026-04-01",
+      "category": "food-drink",
+      "totalJPY": 2700,
+      "count": 1
+    },
+    {
+      "date": "2026-04-01",
+      "category": "general-shopping",
+      "totalJPY": 4050,
+      "count": 1
+    },
+    {
+      "date": "2026-04-01",
+      "category": "pharmacy-beauty",
+      "totalJPY": 4070,
+      "count": 1
+    },
+    {
+      "date": "2026-04-02",
+      "category": "convenience-store",
+      "totalJPY": 3626,
+      "count": 6
+    },
+    {
+      "date": "2026-04-02",
+      "category": "pharmacy-beauty",
+      "totalJPY": 1454,
+      "count": 1
+    },
+    {
+      "date": "2026-04-02",
+      "category": "souvenirs",
+      "totalJPY": 7540,
+      "count": 5
+    },
+    {
+      "date": "2026-04-03",
+      "category": "convenience-store",
+      "totalJPY": 528,
+      "count": 1
+    },
+    {
+      "date": "2026-04-03",
+      "category": "food-drink",
+      "totalJPY": 4639,
+      "count": 2
+    },
+    {
+      "date": "2026-04-03",
+      "category": "local-transit",
+      "totalJPY": 69880,
+      "count": 1
+    },
+    {
+      "date": "2026-04-03",
+      "category": "lodging",
+      "totalJPY": 102013,
+      "count": 1
+    },
+    {
+      "date": "2026-04-04",
+      "category": "convenience-store",
+      "totalJPY": 1097,
+      "count": 2
+    },
+    {
+      "date": "2026-04-05",
+      "category": "attractions",
+      "totalJPY": 1485,
+      "count": 1
+    },
+    {
+      "date": "2026-04-05",
+      "category": "clothing",
+      "totalJPY": 6570,
+      "count": 1
+    },
+    {
+      "date": "2026-04-05",
+      "category": "food-drink",
+      "totalJPY": 810,
+      "count": 1
+    },
+    {
+      "date": "2026-04-05",
+      "category": "general-shopping",
+      "totalJPY": 5500,
+      "count": 2
+    },
+    {
+      "date": "2026-04-05",
+      "category": "lodging",
+      "totalJPY": 45132,
+      "count": 3
+    },
+    {
+      "date": "2026-04-06",
+      "category": "convenience-store",
+      "totalJPY": 416,
+      "count": 1
+    },
+    {
+      "date": "2026-04-06",
+      "category": "food-drink",
+      "totalJPY": 700,
+      "count": 2
+    },
+    {
+      "date": "2026-04-06",
+      "category": "souvenirs",
+      "totalJPY": 3800,
+      "count": 1
+    },
+    {
+      "date": "2026-04-07",
+      "category": "convenience-store",
+      "totalJPY": 1300,
+      "count": 2
+    },
+    {
+      "date": "2026-04-07",
+      "category": "general-shopping",
+      "totalJPY": 1800,
+      "count": 2
+    },
+    {
+      "date": "2026-04-07",
+      "category": "local-transit",
+      "totalJPY": 5000,
+      "count": 1
+    },
+    {
+      "date": "2026-04-07",
+      "category": "lodging",
+      "totalJPY": 53600,
+      "count": 1
+    },
+    {
+      "date": "2026-04-08",
+      "category": "convenience-store",
+      "totalJPY": 1534,
+      "count": 1
+    },
+    {
+      "date": "2026-04-08",
+      "category": "general-shopping",
+      "totalJPY": 2805,
+      "count": 1
+    },
+    {
+      "date": "2026-04-08",
+      "category": "pharmacy-beauty",
+      "totalJPY": 8910,
+      "count": 1
+    },
+    {
+      "date": "2026-04-09",
+      "category": "attractions",
+      "totalJPY": 28158,
+      "count": 1
+    },
+    {
+      "date": "2026-04-09",
+      "category": "convenience-store",
+      "totalJPY": 182,
+      "count": 1
+    },
+    {
+      "date": "2026-04-09",
+      "category": "general-shopping",
+      "totalJPY": 8910,
+      "count": 2
+    },
+    {
+      "date": "2026-04-10",
+      "category": "convenience-store",
+      "totalJPY": 6081,
+      "count": 4
+    },
+    {
+      "date": "2026-04-10",
+      "category": "flights",
+      "totalJPY": 42791,
+      "count": 1
+    },
+    {
+      "date": "2026-04-10",
+      "category": "general-shopping",
+      "totalJPY": 600,
+      "count": 2
+    },
+    {
+      "date": "2026-04-10",
+      "category": "lodging",
+      "totalJPY": 60795,
+      "count": 1
+    },
+    {
+      "date": "2026-04-10",
+      "category": "pharmacy-beauty",
+      "totalJPY": 657,
+      "count": 1
+    },
+    {
+      "date": "2026-04-10",
+      "category": "souvenirs",
+      "totalJPY": 2115,
+      "count": 3
+    },
+    {
+      "date": "2026-04-11",
+      "category": "attractions",
+      "totalJPY": 7740,
+      "count": 1
+    },
+    {
+      "date": "2026-04-11",
+      "category": "clothing",
+      "totalJPY": 6918,
+      "count": 1
+    },
+    {
+      "date": "2026-04-11",
+      "category": "convenience-store",
+      "totalJPY": 2159,
+      "count": 3
+    },
+    {
+      "date": "2026-04-11",
+      "category": "general-shopping",
+      "totalJPY": 58472,
+      "count": 5
+    },
+    {
+      "date": "2026-04-11",
+      "category": "pharmacy-beauty",
+      "totalJPY": 1078,
+      "count": 1
+    },
+    {
+      "date": "2026-04-11",
+      "category": "souvenirs",
+      "totalJPY": 5080,
+      "count": 2
     }
   ],
   "excludedSummary": [
@@ -416,6 +790,12 @@
       "label": "Exchange",
       "totalJPY": 8754,
       "count": 47
+    },
+    {
+      "classification": "reimbursed-payment",
+      "label": "Reimbursed Payment",
+      "totalJPY": 55960,
+      "count": 2
     }
   ],
   "manualExpenses": [

@@ -40,6 +40,34 @@
     {
       "match": {
         "description": "JR Central Tokyo Head Office",
+        "amount": -39960
+      },
+      "set": {
+        "includeInTrackedSpend": false,
+        "classification": "reimbursed-payment",
+        "category": "internal-movement",
+        "group": "Excluded",
+        "normalizedMerchant": "JR Central",
+        "notes": "Excluded from trip spend because this payment was made on someone else's behalf and reimbursed already."
+      }
+    },
+    {
+      "match": {
+        "description": "Magazines Uenohirokoji",
+        "amount": -16000
+      },
+      "set": {
+        "includeInTrackedSpend": false,
+        "classification": "reimbursed-payment",
+        "category": "internal-movement",
+        "group": "Excluded",
+        "normalizedMerchant": "Magazines Ueno Hirokoji",
+        "notes": "Excluded from trip spend because this purchase was made on someone else's behalf and reimbursed already."
+      }
+    },
+    {
+      "match": {
+        "description": "JR Central Tokyo Head Office",
         "amount": -122570
       },
       "set": {
